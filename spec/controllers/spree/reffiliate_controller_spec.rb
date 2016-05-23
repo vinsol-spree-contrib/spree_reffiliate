@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Spree::ReffiliateController, :type => :controller do
   context "referral hyperlink" do
     it "redirects to root path" do
-      spree_get :referral
+      spree_get :referral, code: 'referral-code'
       expect(response).to redirect_to('/')
     end
     it "creates session variable with referral code" do
@@ -22,7 +22,7 @@ describe Spree::ReffiliateController, :type => :controller do
       expect(session[:affiliate]).to eq(path)
     end
     it "redirects to root path if path params is nil" do
-      spree_get :affiliate
+      spree_get :affiliate, path: 'nil'
       expect(response).to redirect_to('/')
     end
     it "redirects to root path if affiliate has no partial" do
