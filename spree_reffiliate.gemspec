@@ -13,13 +13,13 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/vinsol-spree-contrib/spree_reffiliate'
   s.license     = 'New-BSD'
 
-  s.required_ruby_version = '>= 2.1.0'
+  s.required_ruby_version = '>= 2.2.0'
 
   s.files        = `git ls-files`.split($/)
   s.test_files   = s.files.grep(%r{^spec/})
   s.require_path = 'lib'
 
-  s.add_dependency 'spree_core', '~> 3.1.0.beta'
+  s.add_dependency 'spree_core', '~> 3.2.0.alpha'
 
   s.add_development_dependency 'capybara', '~> 2.5'
   s.add_development_dependency 'coffee-rails', '~> 4.0.0'
