@@ -2,7 +2,7 @@ module SpreeReffiliate
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
-      class_option :auto_run_migrations, :type => :boolean, :default => false
+      class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_reffiliate'

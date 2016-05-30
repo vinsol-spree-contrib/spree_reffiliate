@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::Affiliate, :type => :model do
+describe Spree::Affiliate, type: :model do
   it "should have a name" do
     affiliate = FactoryGirl.build(:affiliate, name: nil)
     expect(affiliate).to_not be_valid
@@ -14,7 +14,7 @@ describe Spree::Affiliate, :type => :model do
     before do
       @affiliate = FactoryGirl.create(:affiliate)
       @affiliated = FactoryGirl.create(:user, affiliate_code: @affiliate.path)
-      @order = FactoryGirl.create(:order, :user => @affiliated)
+      @order = FactoryGirl.create(:order, user: @affiliated)
     end
 
     it "returns an array of user records" do

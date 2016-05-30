@@ -6,11 +6,11 @@ module Spree
     end
     def affiliate
       session[:affiliate] = params[:path]
-      affiliate = Spree::Affiliate.find_by(:path => params[:path])
+      affiliate = Spree::Affiliate.find_by(path: params[:path])
       if affiliate.nil? or affiliate.partial.blank? or !partial_exists affiliate.partial
         redirect_to(root_path)
       elsif partial_exists affiliate.partial
-        render "spree/affiliates/#{affiliate.partial}", :layout => affiliate.get_layout
+        render "spree/affiliates/#{affiliate.partial}", layout: affiliate.get_layout
       end
     end
 

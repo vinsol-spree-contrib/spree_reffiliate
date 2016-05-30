@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::ReffiliateController, :type => :controller do
+describe Spree::ReffiliateController, type: :controller do
   context "referral hyperlink" do
     it "redirects to root path" do
       spree_get :referral, code: 'referral-code'
@@ -18,7 +18,7 @@ describe Spree::ReffiliateController, :type => :controller do
     end
     it "creates session variable with affiliate path" do
       path = 'affiliate'
-      spree_get :affiliate, :path => path
+      spree_get :affiliate, path: path
       expect(session[:affiliate]).to eq(path)
     end
     it "redirects to root path if path params is nil" do
@@ -37,7 +37,7 @@ describe Spree::ReffiliateController, :type => :controller do
       @affiliate.update_attribute :partial, 'corona'
       controller.prepend_view_path 'spec/assets'
       spree_get :affiliate, path: @affiliate.path
-      response.should render_template('spree/affiliates/corona')
+      expect(response).to render_template('spree/affiliates/corona')
     end
     context "layout options" do
       @options = Hash[Spree::Affiliate.layout_options]
@@ -48,7 +48,7 @@ describe Spree::ReffiliateController, :type => :controller do
           controller.prepend_view_path 'spec/assets'
           allow(controller).to receive(:partial_exists).and_return(true)
           spree_get :affiliate, path: @affiliate.path
-          response.should render_template(layout: @affiliate.get_layout)
+          expect(response).to render_template(layout: @affiliate.get_layout)
         end
       end 
     end

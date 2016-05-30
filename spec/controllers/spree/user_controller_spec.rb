@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::UserRegistrationsController, :type => :controller do
+describe Spree::UserRegistrationsController, type: :controller do
   before { @request.env['devise.mapping'] = Devise.mappings[:spree_user] }
 
   context "#create" do

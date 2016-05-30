@@ -1,5 +1,9 @@
 en:
   spree:
+    affiliate_partial_path: 'app/views/spree/affiliates/'
+    editing_affiliate: "Editing Affiliate:"
+    listing_affiliates: 'Listing Affiliates'
+    new_affiliate: 'New Affiliate'
     promotion_rule_types:
       referred_promotion_rule:
         name: "Referred User"
@@ -7,4 +11,8 @@ en:
       affiliated_promotion_rule:
         name: "Affiliate User"
         description: "Must be an affiliated user"
-    editing_affiliate: "Editing Affiliate:" 
+    referred_by: Referred by
+    referral_code: Referral code
+    referral_stats: Referral Stats
+    referred_orders: Referred Orders
+    users_referred: Users referred

@@ -30,7 +30,7 @@ module Spree
    private
 
     def referred_records_with_user_orders
-      referred_records.includes({:user => :orders})
+      referred_records.includes({user: :orders})
     end
 
     def post_referral_order?(referred_record)

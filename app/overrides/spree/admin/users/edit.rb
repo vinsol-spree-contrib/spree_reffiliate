@@ -1,14 +1,19 @@
 Deface::Override.new(
-  :virtual_path => "spree/admin/users/edit",
-  :name => "referral_fieldset",
-  :insert_after => "[data-hook='admin_user_api_key']"
+  virtual_path: "spree/admin/users/edit",
+  name: "referral_fieldset",
+  insert_after: "[data-hook='admin_user_api_key']"
 ) do
 <<-CODE.chomp
-<fieldset data-hook="admin_user_referral_table">
-  <legend>Referral Information</legend>
-  <table>
+<div data-hook="admin_user_referral_stats" class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title">
+      <%= Spree.t(:referral_stats) %>
+    </h1>
+  </div>
+  
+  <table class="table" id="user-referral-stats" data-hook>
     <tr>
-      <th>Referred by</th>
+      <td width="30%"><%= Spree.t(:referred_by) %>:</td>
       <td>
         <% if @user.referred? %>
           <%= link_to(@user.referred_by.email, edit_admin_user_url(@user.referred_by)) %>
@@ -19,32 +24,39 @@ Deface::Override.new(
         <% end %>
       </td>
     </tr>
-      <th>Referral code</th>
+    <tr>
+      <td><%= Spree.t(:referral_code) %>:</td>
       <td><%= @user.referral.code %></td>
-    <tr>
     </tr>
-      <th>Referred orders</th>
+    <tr>
+      <td><%= Spree.t(:referred_orders) %>:</td>
       <td>
-        <%= "No referred orders yet." if @user.referral.referred_orders.count == 0 %>
-        <ol style="margin-left: 20px;">
-          <% @user.referral.referred_orders.each do |order| %>
-            <li><%= link_to order.number, edit_admin_order_path(order) %> (<%= order.state %>)</li>
-          <% end %>
-        <ol>
+        <% if @user.referral.referred_orders.count.zero? %>
+          <%= "No referred orders yet." %>
+        <% else %>
+          <ol>
+            <% @user.referral.referred_orders.each do |order| %>
+              <li><%= link_to order.number, edit_admin_order_path(order) %> (<%= order.state %>)</li>
+            <% end %>
+          <ol>
+        <% end %>
       </td>
+    </tr>
     <tr>
-    <tr>
-      <th>Users referred</th>
+      <td><%= Spree.t(:users_referred) %>:</td>
       <td>
-        <%= "No referred users yet." if @user.referred_count == 0 %>
-        <ol style="margin-left: 20px;">
-          <% @user.referral.referred_users.each do |user| %>
-            <li><%= link_to user.email, edit_admin_user_url(user) %></li>
-          <% end %>
-        </ol>
+        <% if @user.referred_count.zero? %>
+          <%= "No referred users yet." %>
+        <% else %>
+          <ol>
+            <% @user.referral.referred_users.each do |user| %>
+              <li><%= link_to user.email, edit_admin_user_url(user) %></li>
+            <% end %>
+          </ol>
+        <% end %>
       </td>
-    <tr>
-  </tr>
-</fieldset>
+    </tr>
+  </table>
+</div>
 CODE
 end
