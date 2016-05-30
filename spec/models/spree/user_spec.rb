@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Spree::User, type: :model do
   before(:each) do
-    @user = FactoryGirl.create(:user, email: Faker::Internet.email)
-    @referred = FactoryGirl.create(:user, email:  Faker::Internet.email, referral_code: @user.referral.code)
-    @affiliate = Spree::Affiliate.create(name: Faker::Name.name, path: Faker::Name.name)
-    @affiliated = FactoryGirl.create(:user, email:  Faker::Internet.email, affiliate_code: @affiliate.path)
+    @user = FactoryGirl.create(:user, email: FFaker::Internet.email)
+    @referred = FactoryGirl.create(:user, email:  FFaker::Internet.email, referral_code: @user.referral.code)
+    @affiliate = Spree::Affiliate.create(name: FFaker::Name.name, path: FFaker::Name.name)
+    @affiliated = FactoryGirl.create(:user, email:  FFaker::Internet.email, affiliate_code: @affiliate.path)
   end
   context "referral user" do
     it "has a referral record" do

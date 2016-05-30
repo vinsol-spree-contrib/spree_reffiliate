@@ -10,20 +10,20 @@ Gem::Specification.new do |s|
   s.email       = 'abarcadabra@gmail.com'
   s.summary     = 'Spree Affiliate and Referrals extension'
   s.description = 'Configurable affiliates and referrals features for Spree'
-  s.homepage    = 'https://github.com/kinduff/spree_reffiliate'
+  s.homepage    = 'https://github.com/vinsol-spree-contrib/spree_reffiliate'
   s.license     = 'New-BSD'
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.1.0'
 
   s.files        = `git ls-files`.split($/)
   s.test_files   = s.files.grep(%r{^spec/})
   s.require_path = 'lib'
 
-  s.add_dependency 'spree_core', '~> 3.0.0'
+  s.add_dependency 'spree_core', '~> 3.1.0.beta'
 
-  s.add_development_dependency 'capybara', '~> 2.4.4'
+  s.add_development_dependency 'capybara', '~> 2.5'
   s.add_development_dependency 'coffee-rails', '~> 4.0.0'
-  s.add_development_dependency 'database_cleaner', '~> 1.3.0'
+  s.add_development_dependency 'database_cleaner', '~> 1.3'
   s.add_development_dependency 'factory_girl', '~> 4.5'
   s.add_development_dependency 'ffaker', '>= 1.25.0'
   s.add_development_dependency 'rspec-rails', '~> 3.1.0'
@@ -31,4 +31,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'selenium-webdriver', '>= 2.41'
   s.add_development_dependency 'simplecov', '~> 0.9.0'
   s.add_development_dependency 'sqlite3', '~> 1.3.10'
+  s.add_development_dependency 'mysql2'
+  s.add_development_dependency 'pg'
 end

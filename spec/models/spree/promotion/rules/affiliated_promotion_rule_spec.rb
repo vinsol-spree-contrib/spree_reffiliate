@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Spree::Promotion::Rules::AffiliatedPromotionRule, type: :model do
   before do
     @affiliate = FactoryGirl.create(:affiliate, path: 'corona')
-    @affiliated = FactoryGirl.create(:user, email:  Faker::Internet.email, affiliate_code: @affiliate.path)
+    @affiliated = FactoryGirl.create(:user, email:  FFaker::Internet.email, affiliate_code: @affiliate.path)
     @affiliated_order = FactoryGirl.create(:order, user_id: @affiliated.id)
 
     @falsy_affiliate = FactoryGirl.create(:affiliate, path: 'victoria')
-    @falsy_affiliated = FactoryGirl.create(:user, email:  Faker::Internet.email, affiliate_code: @falsy_affiliate.path)
+    @falsy_affiliated = FactoryGirl.create(:user, email:  FFaker::Internet.email, affiliate_code: @falsy_affiliate.path)
     @falsy_affiliated_order = FactoryGirl.create(:order, user_id: @falsy_affiliated.id)
 
-    @user = FactoryGirl.create(:user, email: Faker::Internet.email)
+    @user = FactoryGirl.create(:user, email: FFaker::Internet.email)
     @organic_order = FactoryGirl.create(:order, user_id: @user)
 
     @rule = FactoryGirl.build(:affiliated_promotion_rule)

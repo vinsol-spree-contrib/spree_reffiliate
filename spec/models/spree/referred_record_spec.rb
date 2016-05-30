@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Spree::ReferredRecord, type: :model do
   before(:each) do
-    @user = FactoryGirl.create(:user, email: Faker::Internet.email)
-    @referred = FactoryGirl.create(:user, email:  Faker::Internet.email, referral_code: @user.referral.code)
+    @user = FactoryGirl.create(:user, email: FFaker::Internet.email)
+    @referred = FactoryGirl.create(:user, email:  FFaker::Internet.email, referral_code: @user.referral.code)
     @referral_record = @referred.referred_record
   end
 

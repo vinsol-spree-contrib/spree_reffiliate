@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :affiliate, class: Spree::Affiliate do
-    name Faker::Name.first_name
-    path Faker::Name.first_name
-    partial Faker::Name.first_name
+    name FFaker::Name.first_name
+    path FFaker::Name.first_name
+    partial FFaker::Name.first_name
     layout nil
   end
 
