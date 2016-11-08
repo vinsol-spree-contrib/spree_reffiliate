@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = 'abarcadabra@gmail.com'
   s.summary     = 'Spree Affiliate and Referrals extension'
   s.description = 'Configurable affiliates and referrals features for Spree'
-  s.homepage    = 'https://github.com/kinduff/spree_reffiliate'
+  s.homepage    = 'https://github.com/vinsol-spree-contrib/spree_reffiliate'
   s.license     = 'New-BSD'
 
   s.required_ruby_version = '>= 1.9.3'

@@ -1,6 +1,3 @@
-require "codeclimate-test-reporter"
-CodeClimate::TestReporter.start
-
 # Run Coverage report
 require 'simplecov'
 SimpleCov.start do
