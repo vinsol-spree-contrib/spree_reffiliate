@@ -1,7 +1,7 @@
 module Spree
   class Affiliate < Spree::Base
     has_many :referred_records
-    
+
     validates_presence_of :name, :path
 
     def referred_users
@@ -17,8 +17,7 @@ module Spree
     end
 
     def get_layout
-      return false if layout == 'false'
-      layout
+      layout == 'false' ? false : layout
     end
 
     private
