@@ -11,7 +11,7 @@ module Spree
       protected
 
         def affiliate_partial_exists? partial
-          return false if partial.blank? 
+          return false if partial.blank?
           Affiliate.lookup_for_partial lookup_context, partial
         end
 
