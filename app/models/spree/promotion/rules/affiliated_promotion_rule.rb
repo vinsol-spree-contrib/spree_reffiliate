@@ -8,8 +8,7 @@ module Spree
           association_foreign_key: 'affiliate_id'
 
         def eligible?(order, options = {})
-          return true if order.user and order.user.affiliate? and affiliates.collect(&:id).include?(order.user.affiliate.id)
-          false
+          order.user and order.user.affiliate? and affiliate_ids.include?(order.user.affiliate.id)
         end
 
         def applicable?(promotable)
