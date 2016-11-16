@@ -28,13 +28,7 @@ Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate fea
 To use the stable branch, add this line to your Gemfile:
 
 ```ruby
-gem 'spree_reffiliate'
-```
-
-Alternatively, if you want to use the bleeding edge version, use this line:
-
-```ruby
-gem 'spree_reffiliate', github: 'kinduff/spree_reffiliate'
+gem 'spree_reffiliate', github: 'vinsol-spree-contrib/spree_reffiliate'
 ```
 
 Bundle your dependencies and run the installation generator:
@@ -109,19 +103,7 @@ bundle
 bundle exec rake
 ```
 
-When testing your applications integration with this extension you may use it's factories.
-Simply add this require statement to your spec_helper:
-
-```ruby
-require 'spree_reffiliate/factories'
-```
-
-## ToDo
-+ Add missing documentation
-+ Add 2-2-stable and 2-1-stable support (or at least test them)
-+ Improve affiliates admin
-+ Improve User and Orders listing at user admin
-+ Add option or helper to show referral code to the user
+## Credits
 
 Copyright (c) 2014 Alejandro AR, released under the New BSD License
 

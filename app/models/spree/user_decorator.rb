@@ -13,7 +13,7 @@ module Spree
     def referred_by
       referred_record.try(:referral).try(:user)
     end
-    
+
     def referred_count
       referral.referred_records.count
     end
