@@ -29,9 +29,9 @@ module Spree
     private
       def referral_affiliate_check
         if !self.referral_code.nil?
-          referred = Referral.find_by(code: referral_code)
+          referred = Referral.where('lower(code) = ?', referral_code.downcase).first
         elsif !self.affiliate_code.nil?
-          referred = Affiliate.find_by(path: affiliate_code)
+          referred = Affiliate.where('lower(path) = ?', affiliate_code.downcase).first
         end
         if referred
           referred.referred_records.create(user: self)
