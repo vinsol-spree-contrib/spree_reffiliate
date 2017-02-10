@@ -5,4 +5,8 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :affiliates
   end
+
+  namespace :affiliate do
+    resources :confirmations, only: :new
+  end
 end

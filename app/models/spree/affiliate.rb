@@ -1,8 +1,14 @@
 module Spree
   class Affiliate < Spree::Base
+    attr_accessor :user
+
     has_many :referred_records
 
-    validates_presence_of :name, :path
+    validates :name, :path, :email, presence: true
+    validates :email, uniqueness: true
+
+    before_create :generate_activation_token, :create_user
+    after_commit :send_activation_instruction, on: :create
 
     def referred_users
       referred_records.includes(:user).collect(&:user).compact
@@ -20,18 +26,32 @@ module Spree
       layout == 'false' ? false : layout
     end
 
+    def self.layout_options
+      [
+        ["No Layout", "false"],
+        ["Spree Application Layout", 'spree/layouts/spree_application'],
+        ["Custom Layout Path", nil]
+      ]
+    end
+
+    def self.lookup_for_partial lookup_context, partial
+      lookup_context.template_exists?(partial, ["spree/affiliates"], false)
+    end
+
     private
 
-      def self.layout_options
-        [
-          ["No Layout", "false"],
-          ["Spree Application Layout", 'spree/layouts/spree_application'],
-          ["Custom Layout Path", nil]
-        ]
+      def create_user
+        @user = Spree::User.find_or_initialize_by(email: email)
+        user.spree_roles << Spree::Role.affiliate
+        user.save!
       end
 
-      def self.lookup_for_partial lookup_context, partial
-        lookup_context.template_exists?(partial, ["spree/affiliates"], false)
+      def generate_activation_token
+        self.activation_token = SecureRandom.hex(10)
+      end
+
+      def send_activation_instruction
+        Spree::AffiliateMailer.activation_instruction(email)
       end
 
   end
