@@ -1,0 +1,8 @@
+class AddUserToSpreeAffiliate < ActiveRecord::Migration
+  def change
+    add_column :spree_affiliates, :email, :string
+    add_column :spree_affiliates, :active, :boolean, default: false
+    add_column :spree_affiliates, :activation_token, :string
+    add_column :spree_affiliates, :activated_at, :datetime
+  end
+end
