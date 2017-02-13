@@ -1,0 +1,21 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:edit_commission_rule) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'arrow-left', Spree.t(:back_to_commission_rules_list), admin_commission_rules_path, class: 'btn btn-default' %>
+<% end %>
+
+<div data-hook="admin_commission_rule_edit_form_header">
+  <%= render partial: 'spree/shared/error_messages', locals: { target: @commission_rule } %>
+</div>
+
+<div data-hook="admin_commission_rule_edit_form">
+  <%= form_for [:admin, @commission_rule], url: admin_commission_rules_url, method: :post do |f| %>
+    <%= render partial: 'form', locals: { f: f } %>
+
+    <div data-hook="admin_commission_rule_edit_form_buttons">
+      <%= render partial: 'spree/admin/shared/edit_resource_links' %>
+    </div>
+  <% end %>
+</div>

@@ -3,5 +3,4 @@ Welcome <%= @affiliate.email %>!
 Your request to be an Affiliate has been acknowledged.
 
 You can confirm your account email through the url below:
-<% debugger %>
 <%= new_admin_affiliate_confirmation_url(activation_token: @affiliate.activation_token) %>

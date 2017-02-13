@@ -1,7 +1,7 @@
 module Spree
   class Affiliate::ConfirmationsController < Spree::BaseController
 
-    prepend_before_action :load_affiliate, :load_user only: :new
+    prepend_before_action :load_user, :load_affiliate, only: :new
 
     def new
       redirect_to root_path, error: Spree(:not_found) unless @affiliate

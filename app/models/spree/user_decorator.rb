@@ -45,9 +45,9 @@ Spree::User.class_eval do
 
   private
     def referral_affiliate_check
-      if !self.referral_code.nil?
+      if referral_code.present?
         referred = Referral.where('lower(code) = ?', referral_code.downcase).first
-      elsif !self.affiliate_code.nil?
+      elsif affiliate_code.present?
         referred = Affiliate.where('lower(path) = ?', affiliate_code.downcase).first
       end
       if referred
