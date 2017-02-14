@@ -1,10 +1,12 @@
 Spree::User.class_eval do
+  include Spree::TransactionRegistrable
   attr_accessor :referral_code, :affiliate_code, :can_activate_associated_partner
 
   has_one :referral
   has_one :referred_record
   has_one :affiliate, through: :referred_record, foreign_key: :affiliate_id
   has_one :affiliate_record, class_name: Spree::ReferredRecord
+  has_many :transactions, as: :commissionable, class_name: 'Spree::CommissionTransaction'
 
   after_create :create_referral
   after_create :referral_affiliate_check
@@ -36,7 +38,7 @@ Spree::User.class_eval do
 
   protected
     def password_required?
-      if new_record? && spree_roles.includes?(Spree::Role.affiliate)
+      if new_record? && spree_roles.include?(Spree::Role.affiliate)
         false
       else
         super
@@ -46,9 +48,10 @@ Spree::User.class_eval do
   private
     def referral_affiliate_check
       if referral_code.present?
-        referred = Referral.find_by(code: referral_code)
+        referred = Spree::Referral.find_by(code: referral_code)
       elsif affiliate_code.present?
-        referred = Affiliate.find_by(path: affiliate_code)
+        referred = Spree::Affiliate.find_by(path: affiliate_code)
+        register_commission_transaction(referred) if referred
       end
       if referred
         referred.referred_records.create(user: self)

@@ -9,6 +9,10 @@ module Spree
         @affiliates = Affiliate.all.page(params[:page]).per(Spree::Config[:admin_products_per_page])
       end
 
+      def transactions
+        @commission_transactions = @affiliate.transactions.page(params[:page]).per(params[:per_page])
+      end
+
       protected
 
         def affiliate_partial_exists? partial

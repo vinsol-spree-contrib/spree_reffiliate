@@ -30,7 +30,9 @@
             <td class='affiliate_status align-center' style="color: green">Found</td>
           <% end %>
           <td data-hook="admin_affiliates_index_row_actions" class="actions">
+
             <%= link_to_edit affiliate, no_text: true %>
+            <%= button_link_to "", transactions_admin_affiliate_path(affiliate), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
             <%= link_to_delete affiliate, no_text: true %>
           </td>
         </tr>

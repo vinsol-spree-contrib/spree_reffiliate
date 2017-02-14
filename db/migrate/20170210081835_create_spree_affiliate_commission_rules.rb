@@ -1,6 +1,6 @@
-class CreateSpreeAffiliateCommisionRules < ActiveRecord::Migration
+class CreateSpreeAffiliateCommissionRules < ActiveRecord::Migration
   def change
-    create_table :spree_affiliate_commision_rules do |t|
+    create_table :spree_affiliate_commission_rules do |t|
       t.references :commission_rule
       t.references :affiliate
 
