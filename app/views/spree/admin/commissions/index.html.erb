@@ -1,0 +1,43 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_commissions) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'arrow-left', Spree.t(:back_to_affilate), edit_admin_affiliate_path(@affiliate), class: 'btn btn-default' %>
+<% end %>
+
+<% if @commissions.any? %>
+  <table class="table" id="listing_commissions" data-hook>
+    <thead>
+      <tr data-hook="admin_commissions_index_headers">
+        <th><%= Spree.t(:start_date) %></th>
+        <th><%= Spree.t(:end_date) %></th>
+        <th><%= Spree.t(:total) %></th>
+        <th><%= Spree.t(:affiliate) %></th>
+        <th data-hook="admin_commissions_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @commissions.each do |commission|%>
+        <tr id="<%= spree_dom_id commission %>" data-hook="admin_commissions_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td class='commission_start_date'><%= commission.start_date %></td>
+          <td class='commission_end_date'><%= commission.end_date %></td>
+          <td class='commission_path align-center'><%= commission.transactions.map(&:amount).sum %></td>
+          <td class='commission_count align-center'><%= commission.affiliate.name %></td>
+          <td data-hook="admin_commissions_index_row_actions" class="actions">
+
+            <%= link_to_edit commission, no_text: true %>
+            <%#= button_link_to "", transactions_admin_commission_path(commission), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
+            <%= link_to_delete commission, no_text: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @commissions %>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Commission)) %>
+  </div>
+<% end %>

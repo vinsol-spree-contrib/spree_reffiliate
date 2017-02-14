@@ -3,7 +3,12 @@ Spree::Core::Engine.routes.draw do
   get 'a/:path' => 'reffiliate#affiliate', as: 'affiliate'
 
   namespace :admin do
-    resources :affiliates, :commission_rules
+    resources :affiliates do
+      resources :commissions
+      get :transactions, on: :member
+    end
+
+    resources :commission_rules
   end
 
   namespace :affiliate do
