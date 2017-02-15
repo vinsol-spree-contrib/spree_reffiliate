@@ -64,12 +64,18 @@
     <tbody>
       <% @commissions.each do |commission|%>
         <tr id="<%= spree_dom_id commission %>" data-hook="admin_commissions_index_rows" class="<%= cycle('odd', 'even')%>">
-          <td><%= commission.start_date %></td>
-          <td><%= commission.end_date %></td>
+          <td><%= pretty_time(commission.start_date) %></td>
+          <td><%= pretty_time(commission.end_date) %></td>
           <td class='align-center'><%= commission.transactions.map(&:amount).sum %></td>
           <td class='align-center'><%= commission.affiliate.email %></td>
           <td data-hook="admin_commissions_index_row_actions" class="actions">
-            <%= button_link_to "", transactions_admin_affiliate_commission_path(@affiliate, commission), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
+          <% unless commission.paid? %>
+            <%= button_link_to "", pay_admin_affiliate_commission_path(@affiliate, commission), class: 'with-tip btn-sm btn-success', icon: 'ok', method: :patch %>
+          <% else %>
+          <label class="label label-success"> <%= commission.paid? ? 'Paid' : 'Not Paid'%> </label>
+          <% end %>
+            <%= button_link_to "", transactions_admin_affiliate_path(@affiliate), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
+
           </td>
         </tr>
       <% end %>

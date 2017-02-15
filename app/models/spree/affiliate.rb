@@ -3,9 +3,9 @@ module Spree
     attr_accessor :user
 
     has_many :referred_records
-    has_many :transactions, class_name: 'Spree::CommissionTransaction'
-    has_many :commissions, class_name: 'Spree::Commission'
-    has_many :affiliate_commission_rules, class_name: 'Spree::AffiliateCommissionRule', inverse_of: :affiliate
+    has_many :transactions, class_name: 'Spree::CommissionTransaction', dependent: :restrict_with_error
+    has_many :commissions, class_name: 'Spree::Commission', dependent: :restrict_with_error
+    has_many :affiliate_commission_rules, class_name: 'Spree::AffiliateCommissionRule', inverse_of: :affiliate, dependent: :destroy
     has_many :commission_rules, through: :affiliate_commission_rules, class_name: 'Spree::CommissionRule'
 
     accepts_nested_attributes_for :affiliate_commission_rules

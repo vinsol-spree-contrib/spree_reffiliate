@@ -6,7 +6,7 @@ Spree::User.class_eval do
   has_one :referred_record
   has_one :affiliate, through: :referred_record, foreign_key: :affiliate_id
   has_one :affiliate_record, class_name: Spree::ReferredRecord
-  has_many :transactions, as: :commissionable, class_name: 'Spree::CommissionTransaction'
+  has_many :transactions, as: :commissionable, class_name: 'Spree::CommissionTransaction', dependent: :restrict_with_error
 
   after_create :create_referral
   after_create :referral_affiliate_check

@@ -1,13 +1,13 @@
 class CreateSpreeCommissionTransactions < ActiveRecord::Migration
   def change
     create_table :spree_commission_transactions do |t|
-      t.references :affiliate
-      t.references :commission
+      t.references :affiliate, index: true
+      t.references :commission, index: true
 
       t.decimal :amount
-      t.boolean :locked
+      t.boolean :locked, null: false
 
-      t.references :commissionable, polymorphic: true
+      t.references :commissionable, polymorphic: true, index: true
 
       t.timestamps null: false
     end
