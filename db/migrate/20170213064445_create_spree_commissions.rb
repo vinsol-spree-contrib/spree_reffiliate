@@ -1,10 +1,10 @@
 class CreateSpreeCommissions < ActiveRecord::Migration
   def change
     create_table :spree_commissions do |t|
-      t.references :affiliate
+      t.references :affiliate, index: true
 
-      t.datetime :start_date
-      t.datetime :end_date
+      t.datetime :start_date, index: true
+      t.datetime :end_date, index: true
       t.boolean :paid, default: false, null: false
       t.decimal :total
 

@@ -3,7 +3,8 @@ class CreateSpreeCommissionRules < ActiveRecord::Migration
     create_table :spree_commission_rules do |t|
       t.string :name
       t.text :description
-      t.boolean :fixed_commission
+      t.boolean :fixed_commission, null: false
+
       t.timestamps null: false
     end
   end

@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class CommissionRulesController < Spree::Admin::ResourceController
+    class CommissionRulesController < ResourceController
     end
   end
 end

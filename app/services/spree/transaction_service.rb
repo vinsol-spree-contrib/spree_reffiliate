@@ -4,10 +4,11 @@ module Spree
     attr_accessor :transaction, :affiliate, :affiliate_commission_rule, :amount
 
     def calculate_commission_amount
-      if affiliate_commission_rule.commission_rule.fixed_commission?
-        @amount = affiliate_commission_rule.rate
+      rate = affiliate_commission_rule.rate
+      if affiliate_commission_rule.fixed_commission?
+        @amount = rate
       else
-        @amount = (transaction.commissionable.total * (affiliate_commission_rule.rate))/100
+        @amount = (transaction.commissionable.total * (rate))/100
       end
       @amount.to_f
     end

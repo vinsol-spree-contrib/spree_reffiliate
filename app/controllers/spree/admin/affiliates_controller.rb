@@ -1,18 +1,19 @@
 module Spree
   module Admin
-    class AffiliatesController < Spree::Admin::ResourceController
+    class AffiliatesController < ResourceController
       helper_method :affiliate_partial_exists?
       before_action :layout_options, only: [:new, :edit, :update]
       before_action :build_or_load_affiliate_commission_rule, only: [:new, :edit]
 
       def index
-        @affiliates = Affiliate.all.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+        @affiliates = Affiliate.all.page(params[:page]).per(params[:per_page] || Spree::Config[:admin_affiliates_per_page])
       end
 
       def transactions
-        @commission_transactions = @affiliate.transactions.page(params[:page]).per(params[:per_page])
+        params[:q] = {} unless params[:q]
+        @commission_transactions = @affiliate.transactions
         @search = @commission_transactions.ransack(params[:q])
-        @commission_transactions = @search.result.page(params[:page]).per(params[:per_page])
+        @commission_transactions = @search.result.page(params[:page]).per(params[:per_page] || Spree::Config[:admin_transactions_per_page])
       end
 
       protected

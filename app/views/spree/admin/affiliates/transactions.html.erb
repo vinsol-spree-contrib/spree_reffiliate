@@ -46,7 +46,7 @@
           <% elsif transaction.commissionable_type.eql? 'Spree::Order' %>
             <td class='transaction_name'><%=link_to transaction.commissionable.number, '' %></td>
           <% end %>
-          <td class='align-center'><%= transaction.created_at %></td>
+          <td class='align-center'><%= pretty_time(transaction.created_at) %></td>
           <td class='align-center'><%= transaction.amount %></td>
           <td class='align-center'> <%= transaction.locked? %> </td>
         </tr>

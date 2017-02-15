@@ -1,6 +1,6 @@
 module Spree
   module Admin
-    class CommissionsController < Spree::Admin::ResourceController
+    class CommissionsController < ResourceController
       belongs_to 'spree/affiliate'
 
       def index
@@ -9,10 +9,11 @@ module Spree
 
       def pay
         if @commission.mark_paid!
-          redirect_to :index, success: Spree.t(:marke_paid_successfully)
+          flash[:success] = Spree.t(:mark_paid_successfully, scope: :commission)
         else
-          redir :index, error: Spree.t(:marke_paid_failure)
+          flash[:error] = Spree.t(:mark_paid_failure, scope: :commission)
         end
+        redirect_to admin_affiliate_commissions_path(@affiliate)
       end
 
       def transactions
@@ -27,7 +28,7 @@ module Spree
 
           @collection = super
           @search = @collection.ransack(params[:q])
-          @collection = @search.result.includes(:affiliate).page(params[:page]).per(params[:per_page])
+          @collection = @search.result.includes(:affiliate).page(params[:page]).per(params[:per_page] || Spree::Config[:admin_commissions_per_page])
         end
 
     end

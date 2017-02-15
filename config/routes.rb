@@ -5,7 +5,7 @@ Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :affiliates do
       resources :commissions do
-        get :transactions, on: :member
+        patch :pay, on: :member
       end
       get :transactions, on: :member
     end
