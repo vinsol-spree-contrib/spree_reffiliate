@@ -6,12 +6,56 @@
   <%= link_to_with_icon 'arrow-left', Spree.t(:back_to_affilate), edit_admin_affiliate_path(@affiliate), class: 'btn btn-default' %>
 <% end %>
 
+<% content_for :table_filter do %>
+  <div data-hook="admin_commissions_listing">
+
+    <%= search_form_for @search, url: admin_affiliate_commissions_path(@affiliate) do |f| %>
+      <%- locals = { f: f } %>
+      <div class="row">
+        <div class="date-range-filter col-md-8">
+          <div class="form-group">
+            <%= label_tag :start_date_gt, Spree.t(:start_date_range) %>
+            <div class="row no-padding-bottom">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <%= f.text_field :start_date_gt, class: 'datepicker datepicker-from form-control', value: params[:q][:start_date_gt], placeholder: Spree.t(:start) %>
+                  <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <%= f.text_field :start_date_lt, class: 'datepicker datepicker-to form-control', value: params[:q][:start_date_lt], placeholder: Spree.t(:end) %>
+                  <span class="input-group-addon">
+                    <i class="icon icon-calendar"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :affiliate_email_cont, Spree.t(:affiliate_email) %>
+            <%= f.text_field :affiliate_email_cont, size: 15, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div data-hook="admin_products_index_search_buttons" class="form-actions">
+        <%= button Spree.t(:search), 'search' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
 <% if @commissions.any? %>
   <table class="table" id="listing_commissions" data-hook>
     <thead>
       <tr data-hook="admin_commissions_index_headers">
-        <th><%= Spree.t(:start_date) %></th>
-        <th><%= Spree.t(:end_date) %></th>
+        <th><%= sort_link @search,:start_date, Spree.t(:start_date), { default_order: "desc" }, {title: 'admin_commissions_start_date'} %></th>
+        <th><%= sort_link @search,:end_date, Spree.t(:end_date), { default_order: "desc" }, {title: 'admin_commissions_end_date'} %></th>
         <th><%= Spree.t(:total) %></th>
         <th><%= Spree.t(:affiliate) %></th>
         <th data-hook="admin_commissions_index_header_actions" class="actions"></th>
@@ -20,15 +64,12 @@
     <tbody>
       <% @commissions.each do |commission|%>
         <tr id="<%= spree_dom_id commission %>" data-hook="admin_commissions_index_rows" class="<%= cycle('odd', 'even')%>">
-          <td class='commission_start_date'><%= commission.start_date %></td>
-          <td class='commission_end_date'><%= commission.end_date %></td>
-          <td class='commission_path align-center'><%= commission.transactions.map(&:amount).sum %></td>
-          <td class='commission_count align-center'><%= commission.affiliate.name %></td>
+          <td><%= commission.start_date %></td>
+          <td><%= commission.end_date %></td>
+          <td class='align-center'><%= commission.transactions.map(&:amount).sum %></td>
+          <td class='align-center'><%= commission.affiliate.email %></td>
           <td data-hook="admin_commissions_index_row_actions" class="actions">
-
-            <%= link_to_edit commission, no_text: true %>
-            <%#= button_link_to "", transactions_admin_commission_path(commission), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
-            <%= link_to_delete commission, no_text: true %>
+            <%= button_link_to "", transactions_admin_affiliate_commission_path(@affiliate, commission), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
           </td>
         </tr>
       <% end %>

@@ -10,6 +10,8 @@ module Spree
 
     before_validation :assign_commission, :evaluate_amount, on: :create
 
+    self.whitelisted_ransackable_attributes =  %w[amount created_at]
+
     private
       def assign_commission
         start_date = (self.created_at || Date.current).beginning_of_month

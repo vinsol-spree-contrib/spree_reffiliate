@@ -11,6 +11,8 @@ module Spree
 
       def transactions
         @commission_transactions = @affiliate.transactions.page(params[:page]).per(params[:per_page])
+        @search = @commission_transactions.ransack(params[:q])
+        @commission_transactions = @search.result.page(params[:page]).per(params[:per_page])
       end
 
       protected
