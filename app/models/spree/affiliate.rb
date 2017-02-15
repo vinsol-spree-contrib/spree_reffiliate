@@ -18,6 +18,9 @@ module Spree
     before_create :generate_activation_token, :create_user
     after_commit :send_activation_instruction, on: :create
 
+    self.whitelisted_ransackable_attributes =  %w[name email]
+
+
     def referred_users
       referred_records.includes(:user).collect(&:user).compact
     end
