@@ -10,7 +10,7 @@ module Spree
     validates :affiliate_id, uniqueness: { scope: :commission_rule_id, allow_blank: true }
 
     scope :active, -> { where(active: true) }
-    scope :user_registration, -> { includes(:commission_rule).where(spree_commission_rules: { name: 'User Registration' }) }
-    scope :order_placement, ->   { includes(:commission_rule).where(spree_commission_rules: { name: 'Order Placement' }) }
+    scope :user_registration, -> { includes(:commission_rule).where(spree_commission_rules: { name: Spree::CommissionRule::USER_REGISTRATION }) }
+    scope :order_placement, ->   { includes(:commission_rule).where(spree_commission_rules: { name: Spree::CommissionRule::ORDER_PLACEMENT }) }
   end
 end
