@@ -8,7 +8,7 @@ module Spree
       if affiliate_commission_rule.fixed_commission?
         @amount = rate
       else
-        @amount = (transaction.commissionable.total * (rate))/100
+        @amount = (transaction.commissionable.try(:total) * (rate))/100
       end
       @amount.to_f
     end
