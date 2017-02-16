@@ -8,7 +8,7 @@ module Spree
     validate :eligiblity_of_dates
 
     self.whitelisted_ransackable_associations = %w[affiliate]
-    self.whitelisted_ransackable_attributes =  %w[start_date end_date]
+    self.whitelisted_ransackable_attributes =  %w[start_date end_date paid]
 
     define_model_callbacks :mark_paid, only: :after
 
@@ -18,6 +18,11 @@ module Spree
       run_callbacks :mark_paid do
         update_attributes!(paid: true)
       end
+    end
+
+    def display_total
+      currency = Spree::Config[:currency]
+      Spree::Money.new(transactions.map(&:amount).sum, { currency: currency })
     end
 
     private

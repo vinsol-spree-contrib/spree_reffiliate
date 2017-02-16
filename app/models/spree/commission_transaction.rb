@@ -1,16 +1,21 @@
 module Spree
   class CommissionTransaction < Spree::Base
     belongs_to :affiliate, class_name: 'Spree::Affiliate', required: true
-    belongs_to :commission, class_name: 'Spree::Commission', required: true
+    belongs_to :commission, class_name: 'Spree::Commission', required: true, counter_cache: true
     belongs_to :commissionable, polymorphic: true, required: true
 
     validates :locked, acceptance: { accept: 0, message: 'is locked' }
     validates :commission, presence: true
-    validate :cannot_change_commisson, :not_locked
+    validate :cannot_change_commisson, :check_not_locked
 
     before_validation :assign_commission, :evaluate_amount, on: :create
 
     self.whitelisted_ransackable_attributes =  %w[amount created_at]
+
+    def display_total
+      currency = Spree::Config[:currency]
+      Spree::Money.new(amount, { currency: currency })
+    end
 
     private
       def assign_commission

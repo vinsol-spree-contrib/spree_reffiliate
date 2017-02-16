@@ -2,7 +2,7 @@ module Spree
   module Admin
     class AffiliatesController < ResourceController
       helper_method :affiliate_partial_exists?
-      before_action :layout_options, only: [:new, :edit, :update]
+      before_action :layout_options, only: [:new, :create, :edit, :update]
       before_action :build_or_load_affiliate_commission_rule, only: [:new, :edit]
 
       def index
