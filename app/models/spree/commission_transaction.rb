@@ -4,7 +4,6 @@ module Spree
     belongs_to :commission, class_name: 'Spree::Commission', required: true, counter_cache: :transactions_count
     belongs_to :commissionable, polymorphic: true, required: true
 
-    validates :locked, acceptance: { accept: 0, message: 'is locked' }
     validates :commission, presence: true
     validate :cannot_change_commisson, :check_not_locked
 
@@ -19,8 +18,8 @@ module Spree
 
     private
       def assign_commission
-        start_date = (created_at || Date.current).beginning_of_month
-        end_date = start_date.end_of_month
+        start_date = (created_at || Date.current).beginning_of_month.beginning_of_day
+        end_date = start_date.end_of_month.beginning_of_day
         self.commission = Spree::Commission.find_or_create_by(start_date: start_date, end_date: end_date, affiliate_id: affiliate.id)
       end
 

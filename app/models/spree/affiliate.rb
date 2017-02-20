@@ -13,6 +13,7 @@ module Spree
     validates :name, :path, :email, presence: true
     validates :email, :path, uniqueness: { allow_blank: true }
     validates :email, length: { maximum: 254, allow_blank: true }, email: { allow_blank: true }
+    validates :affiliate_commission_rules, presence: true
 
 
     before_create :create_user, :process_activation

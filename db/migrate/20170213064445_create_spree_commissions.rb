@@ -7,6 +7,7 @@ class CreateSpreeCommissions < ActiveRecord::Migration
       t.datetime :end_date, index: true
       t.boolean :paid, default: false, null: false
       t.decimal :total
+      t.integer :transactions_count
 
       t.timestamps null: false
     end
