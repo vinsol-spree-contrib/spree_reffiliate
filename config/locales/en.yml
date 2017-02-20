@@ -25,6 +25,8 @@ en:
       cannot_mark_unpaid: Commission cannot be changed from paid to unpaid
       unsuitable_date_range: End Date must be greater than Start Date
       dates_ineligible: Commission can only be created for current month
+      paid:
+        not_eligible: Commission can not be paid until current month completes
     activation_token_expired: Activation Token is expired or not found
     commission_transaction:
       cannot_change_commisson: Commission for the transaction cannot be changed
@@ -34,3 +36,6 @@ en:
     new_commission_rule: New Commission Rule
     listing_commissions: Listing Commissions
     affiliate_mailer_subject: 'Welcome, Activation Instruction'
+    affiliate_confirmation:
+      editing_user: EDITING USER
+      not_found: Affiliate Not Found

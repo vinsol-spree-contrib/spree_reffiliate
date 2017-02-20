@@ -15,12 +15,22 @@ module Spree
     validates :email, length: { maximum: 254, allow_blank: true }, email: { allow_blank: true }
 
 
-    before_create :create_user
-    before_create :process_activation
+    before_create :create_user, :process_activation
     after_commit :send_activation_instruction, on: :create
 
     self.whitelisted_ransackable_attributes =  %w[name email]
 
+    def self.layout_options
+      [
+        ["No Layout", "false"],
+        ["Spree Application Layout", 'spree/layouts/spree_application'],
+        ["Custom Layout Path", nil]
+      ]
+    end
+
+    def self.lookup_for_partial lookup_context, partial
+      lookup_context.template_exists?(partial, ["spree/affiliates"], false)
+    end
 
     def referred_users
       referred_records.includes(:user).collect(&:user).compact
@@ -38,17 +48,6 @@ module Spree
       layout == 'false' ? false : layout
     end
 
-    def self.layout_options
-      [
-        ["No Layout", "false"],
-        ["Spree Application Layout", 'spree/layouts/spree_application'],
-        ["Custom Layout Path", nil]
-      ]
-    end
-
-    def self.lookup_for_partial lookup_context, partial
-      lookup_context.template_exists?(partial, ["spree/affiliates"], false)
-    end
 
     private
 
@@ -73,7 +72,7 @@ module Spree
       end
 
       def send_activation_instruction
-        Spree::AffiliateMailer.activation_instruction(email).deliver_now unless active_on_create
+        Spree::AffiliateMailer.activation_instruction(email).deliver_now
       end
 
   end

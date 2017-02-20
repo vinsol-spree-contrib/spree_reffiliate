@@ -4,7 +4,7 @@ module Spree
     prepend_before_action :load_user, :load_affiliate, only: :new
 
     def new
-      redirect_to root_path, error: Spree(:not_found) unless @affiliate
+      redirect_to root_path, error: Spree(:not_found, scope: :affiliate_confirmation) unless @affiliate
     end
 
 
