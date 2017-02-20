@@ -5,9 +5,9 @@ class CreateSpreeCommissionTransactions < ActiveRecord::Migration
       t.references :commission, index: true
 
       t.decimal :amount
-      t.boolean :locked, null: false
+      t.boolean :locked, default: false, null: false
 
-      t.references :commissionable, polymorphic: true, index: true
+      t.references :commissionable, polymorphic: true
 
       t.timestamps null: false
     end
