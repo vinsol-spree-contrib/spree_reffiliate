@@ -18,13 +18,13 @@
             <div class="row no-padding-bottom">
               <div class="col-md-6">
                 <div class="input-group">
-                  <%= f.text_field :start_date_gt, class: 'datepicker datepicker-from form-control', value: params[:q][:start_date_gt], placeholder: Spree.t(:start) %>
+                  <%= f.text_field :start_date_gteq, class: 'datepicker datepicker-from form-control', value: params[:q][:start_date_gteq], placeholder: Spree.t(:start) %>
                   <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="input-group">
-                  <%= f.text_field :start_date_lteq, class: 'datepicker datepicker-to form-control', value: params[:q][:start_date_lt], placeholder: Spree.t(:end) %>
+                  <%= f.text_field :start_date_lteq, class: 'datepicker datepicker-to form-control', value: params[:q][:start_date_lteq], placeholder: Spree.t(:end) %>
                   <span class="input-group-addon">
                     <i class="icon icon-calendar"></i>
                   </span>
@@ -83,7 +83,7 @@
           </td>
           <td data-hook="admin_commissions_index_row_actions" class="actions">
             <%= button_link_to "", transactions_admin_affiliate_path(@affiliate), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
-          <% unless commission.paid? %>
+          <% if !commission.paid? && commission.can_marked_paid? %>
             <%= button_link_to "", pay_admin_affiliate_commission_path(@affiliate, commission), class: 'with-tip btn-sm btn-success', icon: 'ok', method: :patch %>
           <% end %>
           </td>

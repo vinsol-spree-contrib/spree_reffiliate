@@ -1,7 +1,7 @@
 module Spree
   class CommissionTransaction < Spree::Base
     belongs_to :affiliate, class_name: 'Spree::Affiliate', required: true
-    belongs_to :commission, class_name: 'Spree::Commission', required: true, counter_cache: true
+    belongs_to :commission, class_name: 'Spree::Commission', required: true, counter_cache: :transactions_count
     belongs_to :commissionable, polymorphic: true, required: true
 
     validates :locked, acceptance: { accept: 0, message: 'is locked' }
