@@ -4,7 +4,6 @@ module Spree
     belongs_to :commission, class_name: 'Spree::Commission', required: true, counter_cache: :transactions_count
     belongs_to :commissionable, polymorphic: true, required: true
 
-    validates :commission, presence: true
     validate :cannot_change_commisson, :check_not_locked
 
     before_validation :assign_commission, :evaluate_amount, on: :create
@@ -29,6 +28,7 @@ module Spree
 
       def evaluate_amount
         self.amount = Spree::TransactionService.new(self).calculate_commission_amount
+        return true
       end
 
       def check_not_locked

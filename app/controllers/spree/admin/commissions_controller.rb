@@ -28,7 +28,7 @@ module Spree
 
           @collection = super
           @search = @collection.ransack(params[:q])
-          @collection = @search.result.includes(:affiliate).page(params[:page]).per(params[:per_page] || Spree::Config[:admin_commissions_per_page])
+          @collection = @search.result.includes(:affiliate, :transactions).page(params[:page]).per(params[:per_page] || Spree::Config[:admin_commissions_per_page])
         end
 
     end
