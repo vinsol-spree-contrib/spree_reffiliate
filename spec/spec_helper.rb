@@ -28,6 +28,8 @@ require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/capybara_ext'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
+require 'shoulda/matchers'
+require 'shoulda-callback-matchers'
 require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/spree_refiliate/factories.rb
@@ -87,4 +89,11 @@ RSpec.configure do |config|
 
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = "random"
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end
