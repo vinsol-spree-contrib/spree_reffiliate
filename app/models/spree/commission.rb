@@ -40,8 +40,12 @@ module Spree
       end
 
       def eligiblity_of_dates
-        errors.add(:base, Spree.t(:unsuitable_date_range, scope: :commission)) if (start_date > end_date)
-        errors.add(:base, Spree.t(:dates_ineligible, scope: :commission)) if (start_date < Time.current.beginning_of_month || end_date > Time.current.end_of_month)
+        if(start_date && end_date)
+          errors.add(:base, Spree.t(:unsuitable_date_range, scope: :commission)) if (start_date > end_date)
+          errors.add(:base, Spree.t(:dates_ineligible, scope: :commission)) if (start_date < Time.current.beginning_of_month || end_date > Time.current.end_of_month)
+        else
+          errors.add(:base, Spree.t(:dates_ineligible, scope: :commission))
+        end
       end
 
       def eligible_to_be_paid

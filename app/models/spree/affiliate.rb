@@ -10,10 +10,9 @@ module Spree
 
     accepts_nested_attributes_for :affiliate_commission_rules
 
-    validates :name, :path, :email, presence: true
+    validates :name, :path, :email, :affiliate_commission_rules, presence: true
     validates :email, :path, uniqueness: { allow_blank: true }
     validates :email, length: { maximum: 254, allow_blank: true }, email: { allow_blank: true }
-    validates :affiliate_commission_rules, presence: true
 
 
     before_create :create_user, :process_activation
@@ -48,7 +47,6 @@ module Spree
     def get_layout
       layout == 'false' ? false : layout
     end
-
 
     private
 
