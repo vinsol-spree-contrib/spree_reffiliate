@@ -23,7 +23,7 @@ module Spree
 
     def display_total
       currency = Spree::Config[:currency]
-      Spree::Money.new(transactions.map(&:amount).sum, { currency: currency })
+      Spree::Money.new(transactions.map(&:amount).compact.sum, { currency: currency })
     end
 
     def can_marked_paid?

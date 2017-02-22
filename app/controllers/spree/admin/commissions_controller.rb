@@ -16,11 +16,6 @@ module Spree
         redirect_to admin_affiliate_commissions_path(@affiliate)
       end
 
-      def transactions
-        @transactions = @commission.transactions
-      end
-
-
       private
         def collection
           return @collection if defined?(@collection)
