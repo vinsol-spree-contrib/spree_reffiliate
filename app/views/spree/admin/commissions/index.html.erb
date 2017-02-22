@@ -82,7 +82,7 @@
             <span class="label label-primary"><%= status %></span>
           </td>
           <td data-hook="admin_commissions_index_row_actions" class="actions">
-            <%= button_link_to "", transactions_admin_affiliate_path(@affiliate), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
+            <%= button_link_to "", transactions_admin_affiliate_path(id: @affiliate.id, q: { commission_id_eq: commission.id }), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
           <% if !commission.paid? && commission.can_marked_paid? %>
             <%= button_link_to "", pay_admin_affiliate_commission_path(@affiliate, commission), class: 'with-tip btn-sm btn-success', icon: 'ok', method: :patch %>
           <% end %>

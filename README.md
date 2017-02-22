@@ -15,9 +15,15 @@ Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate fea
 + Admin is able to see referred users and orders from user
 
 ### Affiliates
-+ Admin is able to create an affiliate with a custom path
++ Admin is able to create an affiliate with a custom path.
++ Affiliate will get a welcome mail, which will have activation link if affliate has not been present as a user in system.
 + Customize the affiliate view with a partial
-+ Users are going to be able to signup as an affiliated user
++ Affiliate can get commission in two ways:
+  i. Order placement
+  ii. User Registration
++ These commission amount can be defined from `affilate_commission_rules` on affiliate new/edit page.
++ After successful user-creation/order-placement, a transaction will be created which will have the amound and commissionable(user/order).
++ Affilate can view it in account panel.
 + Affiliated user can have individual promotions
 + Admin is able to see affiliated users and orders from affiliate
 
@@ -37,6 +43,8 @@ Bundle your dependencies and run the installation generator:
 bundle
 bundle exec rails g spree_reffiliate:install
 ```
+Seed the Commission Rules from seed.rb
+
 
 ### Existing Users
 If you already have users within your database, you'll need to run the following command to generate the referral registry for your users:
@@ -58,6 +66,7 @@ Once installed, you'll be able to access the following methods.
 + affiliate? => boolean
 + affiliate => affiliate record
 + referral => referral record
++ associated_partner => user corrosponding to affiliate.
 
 #### Spree::Referral
 + code => referral code
