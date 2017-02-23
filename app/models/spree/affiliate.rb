@@ -8,12 +8,12 @@ module Spree
     has_many :affiliate_commission_rules, class_name: 'Spree::AffiliateCommissionRule', inverse_of: :affiliate, dependent: :destroy
     has_many :commission_rules, through: :affiliate_commission_rules, class_name: 'Spree::CommissionRule'
 
-    accepts_nested_attributes_for :affiliate_commission_rules
+    accepts_nested_attributes_for :affiliate_commission_rules, reject_if: :invalid_rule
 
-    validates :name, :path, :email, :affiliate_commission_rules, presence: true
+    validates :name, :path, :email, presence: true
     validates :email, :path, uniqueness: { allow_blank: true }
     validates :email, length: { maximum: 254, allow_blank: true }, email: { allow_blank: true }
-
+    validates_associated :affiliate_commission_rules
 
     before_create :create_user, :process_activation
     after_commit :send_activation_instruction, on: :create
@@ -72,6 +72,10 @@ module Spree
 
       def send_activation_instruction
         Spree::AffiliateMailer.activation_instruction(email).deliver_now
+      end
+
+      def invalid_rule(attributes)
+        !attributes[:id] && !attributes[:rate].present? && !attributes[:active].eql?('1')
       end
 
   end

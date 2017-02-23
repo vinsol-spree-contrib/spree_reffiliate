@@ -15,7 +15,7 @@ Spree::UsersController.class_eval do
     def affiliate_user
       if params[:activation_token]
         @affiliate ||= Spree::Affiliate.find_by(activation_token: params[:activation_token])
-        redirect_to root_path, error: Spree.t(:affiliate_not_found) unless @affiliate
+        (redirect_to root_path, error: Spree.t(:affiliate_not_found) and return) unless @affiliate
         @affiliate_user ||= Spree::User.find_by(email: @affiliate.email)
         @affiliate_user.can_activate_associated_partner = true
       end

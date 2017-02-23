@@ -38,5 +38,5 @@ en:
     affiliate_mailer:
       activation_instruction_subject: Welcome, Activation Instruction
     affiliate_confirmation:
-      editing_user: EDITING USER
+      editing_affiliate: EDITING AFFILIATE
       not_found: Affiliate Not Found

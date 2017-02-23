@@ -30,7 +30,7 @@
   <table class="table" id="listing_affiliates" data-hook>
     <thead>
       <tr data-hook="admin_affiliates_index_headers">
-        <th><%= Spree.t(:object) %></th>
+        <th><%= Spree.t(:reference) %></th>
         <th><%= Spree.t(:type) %></th>
         <th>
           <%= sort_link @search, :created_at, Spree.t(:date), { default_order: "desc" }, {title: 'admin_transaction_listing_created_at'} %>

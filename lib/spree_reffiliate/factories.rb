@@ -1,14 +1,13 @@
 FactoryGirl.define do
   factory :affiliate, class: Spree::Affiliate do
-    name FFaker::Name.first_name
-    path FFaker::Name.first_name
-    partial FFaker::Name.first_name
+    name { FFaker::Name.first_name }
+    path { FFaker::Name.first_name }
+    partial { FFaker::Name.first_name }
+    email { FFaker::Internet.email }
     layout nil
 
     after(:build) do |affiliate|
-      Spree::CommissionRule.find_or_create_by(name: Spree::CommissionRule::USER_REGISTRATION, fixed_commission: true)
-      Spree::CommissionRule.find_or_create_by(name: Spree::CommissionRule::ORDER_PLACEMENT, fixed_commission: false)
-      Spree::CommissionRule.all.map { |comm_rule| affiliate.affiliate_commission_rules.find_or_initialize_by(commission_rule_id: comm_rule.id) }
+      Spree::CommissionRule.all.map { |comm_rule| affiliate.affiliate_commission_rules.find_or_initialize_by(commission_rule_id: comm_rule.id, rate: 10) }
     end
   end
 
