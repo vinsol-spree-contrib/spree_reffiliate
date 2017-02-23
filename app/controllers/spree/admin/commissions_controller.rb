@@ -3,10 +3,6 @@ module Spree
     class CommissionsController < ResourceController
       belongs_to 'spree/affiliate'
 
-      def index
-        @commissions = @collection
-      end
-
       def pay
         if @commission.mark_paid!
           flash[:success] = Spree.t(:mark_paid_successfully, scope: :commission)
