@@ -82,48 +82,41 @@ Once installed, you'll be able to access the following methods.
 
 ### Spree Admin
 
-#### Users
-![User Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affliates-listing.png)
-
-#### Affiliates
-![Referral Listing](https://cloud.githubusercontent.com/assets/1270156/4210982/11e9966c-387f-11e4-9a27-fca70c7a706d.png)
-
-#### Promotion Rules
-
-**Important**: in both referrals and affiliates, do **not** fill in the promotion code for the promotion itself to be applied automatically to the user's order. If you add a promotion code, the user will need to apply the for promotion manually.
-
-##### For referrals
-
-![Referral Rules](https://cloud.githubusercontent.com/assets/1270156/4244240/ec3dac8c-3a1d-11e4-8c6d-42c9f9b31e5f.png)
-
-##### For affiliates
-
-![Affiliate Rules](https://cloud.githubusercontent.com/assets/1270156/4244241/ec3e156e-3a1d-11e4-972a-5d61ebf0f053.png)
-
-
 #### Affiliate
 
 ### Registration
++ Affiliate listing can be found in affiliates subtab.
+![Affiliate Registration](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affliates-listing.png)
+
++ Admin can create a new affiliate.
 ![Affiliate Registration](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-registration-new.png)
 
-![Affiliate Confirmation](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affilliate-regis-confirmation.png)
++ Affiliate will be send a email which will have an activation link.
+![Affiliate Confirmation](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-confirmation-crop.png)
 
-![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png`)
+![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png)
 
 #### Commissions
-![Commission Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-commission-listing.png)
+Admin can manage commission for an affiliate by default.
+![Commission Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/commission-listing-crop.png)------------------------------------------------------------------
 
++ Admin can pay commission, once the commission cycle completes. The commission tab will have pay button which will mark respective commission as completes. This action, as a result, also locks corrosponding transactions.
+![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-pay-commission.png)------------------------------------------------------------------
+
++ Commission search has advanced search filters.
 ![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-commission-search.png)
 
-![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-pay-commission.png)
 
 #### Transactions
-![Transactions Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-affiliate-transactions.png)
++ Admin can list the transactions of affiliates.
+![Transactions Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/transactions-listing-crop.png)
 
 
 ### User account
++ User can see its affiliate link from my account.
 ![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png)
-![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-details-transactions.png)
++ Moreover, he can check the transactions from account details page.
+![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/my-account-transactions-crop.png)
 
 
 ## Testing
