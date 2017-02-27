@@ -83,7 +83,7 @@ Once installed, you'll be able to access the following methods.
 ### Spree Admin
 
 #### Users
-![User Listing](https://cloud.githubusercontent.com/assets/1270156/4210981/11cd353a-387f-11e4-826d-07b272bb249a.png)
+![User Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affliates-listing.png)
 
 #### Affiliates
 ![Referral Listing](https://cloud.githubusercontent.com/assets/1270156/4210982/11e9966c-387f-11e4-9a27-fca70c7a706d.png)
@@ -100,8 +100,31 @@ Once installed, you'll be able to access the following methods.
 
 ![Affiliate Rules](https://cloud.githubusercontent.com/assets/1270156/4244241/ec3e156e-3a1d-11e4-972a-5d61ebf0f053.png)
 
+
+#### Affiliate
+
+### Registration
+![Affiliate Registration](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-registration-new.png)
+
+![Affiliate Confirmation](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affilliate-regis-confirmation.png)
+
+![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png`)
+
+#### Commissions
+![Commission Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-commission-listing.png)
+
+![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-commission-search.png)
+
+![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-pay-commission.png)
+
+#### Transactions
+![Transactions Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-affiliate-transactions.png)
+
+
 ### User account
-![User account](https://cloud.githubusercontent.com/assets/1270156/4210983/11e9b9a8-387f-11e4-8733-182bdebc449c.png)
+![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png)
+![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-details-transactions.png)
+
 
 ## Testing
 
