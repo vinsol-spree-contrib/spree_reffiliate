@@ -48,9 +48,9 @@ Spree::User.class_eval do
   private
     def referral_affiliate_check
       if referral_code.present?
-        referred = Spree::Referral.find_by(code: referral_code)
+        referred = Spree::Referral.where('lower(code) = ?', referral_code.downcase).first
       elsif affiliate_code.present?
-        referred = Spree::Affiliate.find_by(path: affiliate_code)
+        referred = Spree::Affiliate.where('lower(path) = ?', affiliate_code.downcase).first
         register_commission_transaction(referred) if referred
       end
       if referred
