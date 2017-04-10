@@ -1,0 +1,26 @@
+<div data-hook="admin_user_form_fields">
+  <div class="row">
+    <div class="col-md-12">
+      <div data-hook="commission_rule_name">
+        <%= f.field_container :name, class: ['form-group'] do %>
+          <%= f.label :name, Spree.t(:name) %>
+          <%= f.text_field :name, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div data-hook="commission_rule_description">
+        <%= f.field_container :description, class: ['form-group'] do %>
+          <%= f.label :description, Spree.t(:description) %>
+          <%= f.text_area :description, class: 'form-control' %>
+        <% end %>
+      </div>
+
+      <div data-hook="commission_rule_fixed_commission">
+        <%= f.field_container :fixed_commission, class: ['form-group'] do %>
+          <%= f.label :fixed_commission, Spree.t(:fixed_commission) %>
+          <%= f.check_box :fixed_commission, class: 'form-control' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

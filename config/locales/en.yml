@@ -18,3 +18,25 @@ en:
     users_referred: Users referred
     referral_code_applied: Please proceed with signup to avail referral discount.
     affiliate_code_applied: Please proceed with signup to avail affiliate discount.
+    affiliate: Affiliate
+    commission:
+      mark_paid_successfully: Commission has been paid successfully
+      mark_paid_failure: Commission cannot be marked paid
+      cannot_mark_unpaid: Commission cannot be changed from paid to unpaid
+      unsuitable_date_range: End Date must be greater than Start Date
+      dates_ineligible: Commission can only be created for current month
+      paid:
+        not_eligible: Commission can not be paid until current month completes
+    activation_token_expired: Activation Token is expired or not found
+    commission_transaction:
+      cannot_change_commisson: Commission for the transaction cannot be changed
+      locked_transaction: Transaction has been locked for changes
+    listing_commission_rules: Listing Commission Rule
+    edit_commission_rule: Edit Commission Rule
+    new_commission_rule: New Commission Rule
+    listing_commissions: Listing Commissions
+    affiliate_mailer:
+      activation_instruction_subject: Welcome, Activation Instruction
+    affiliate_confirmation:
+      editing_affiliate: EDITING AFFILIATE
+      not_found: Affiliate Not Found

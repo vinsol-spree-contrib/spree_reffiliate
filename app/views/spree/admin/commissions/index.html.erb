@@ -1,0 +1,100 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_commissions) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'arrow-left', Spree.t(:back_to_affilate), edit_admin_affiliate_path(@affiliate), class: 'btn btn-default' %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_commissions_listing">
+
+    <%= search_form_for @search, url: admin_affiliate_commissions_path(@affiliate) do |f| %>
+      <%- locals = { f: f } %>
+      <div class="row">
+        <div class="date-range-filter col-md-8">
+          <div class="form-group">
+            <%= label_tag :start_date_gteq, Spree.t(:start_date_range) %>
+            <div class="row no-padding-bottom">
+              <div class="col-md-6">
+                <div class="input-group">
+                  <%= f.text_field :start_date_gteq, class: 'datepicker datepicker-from form-control', value: params[:q][:start_date_gteq], placeholder: Spree.t(:start) %>
+                  <span class="input-group-addon"><i class="icon icon-calendar"></i></span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="input-group">
+                  <%= f.text_field :start_date_lteq, class: 'datepicker datepicker-to form-control', value: params[:q][:start_date_lteq], placeholder: Spree.t(:end) %>
+                  <span class="input-group-addon">
+                    <i class="icon icon-calendar"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :affiliate_email_cont, Spree.t(:affiliate_email) %>
+            <%= f.text_field :affiliate_email_cont, size: 15, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :paid, Spree.t(:status) %>
+            <%= f.select :paid_eq, [['paid', 1], ['unpaid', 0]], { selected: params[:q][:paid_eq], include_blank: true }, class: 'select2 js-filterable' %>
+          </div>
+        </div>
+      </div>
+      <div data-hook="admin_products_index_search_buttons" class="form-actions">
+        <%= button Spree.t(:search), 'search' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% if @commissions.any? %>
+  <table class="table" id="listing_commissions" data-hook>
+    <thead>
+      <tr data-hook="admin_commissions_index_headers">
+        <th><%= sort_link @search,:start_date, Spree.t(:start_date), { default_order: "desc" }, {title: 'admin_commissions_start_date'} %></th>
+        <th><%= sort_link @search,:end_date, Spree.t(:end_date), { default_order: "desc" }, {title: 'admin_commissions_end_date'} %></th>
+        <th><%= Spree.t(:total) %></th>
+        <th><%= sort_link @search, :transactions_count, Spree.t(:transactions), { default_order: "desc" }, {title: 'admin_commissions_transactions_count'} %></th>
+        <th><%= sort_link @search, 'affiliate.email', Spree.t(:affiliate), { default_order: "desc" }, {title: 'admin_commissions_affiliate_email'} %></th>
+        <th><%= sort_link @search, 'commission_paid', Spree.t(:status), { default_order: "desc" }, {title: 'admin_commissions_paid'} %></th>
+        <th data-hook="admin_commissions_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @commissions.each do |commission|%>
+        <tr id="<%= spree_dom_id commission %>" data-hook="admin_commissions_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td><%= pretty_time(commission.start_date) %></td>
+          <td><%= pretty_time(commission.end_date) %></td>
+          <td class='align-center'><%= commission.display_total %></td>
+          <td><%= commission.transactions_count.to_i %></td>
+          <td class='align-center'><%= commission.affiliate.email %></td>
+          <td class='align-center'>
+            <% status = commission.paid? ? 'Paid' : 'unpaid' %>
+            <span class="label label-primary"><%= status %></span>
+          </td>
+          <td data-hook="admin_commissions_index_row_actions" class="actions">
+            <%= button_link_to "", transactions_admin_affiliate_path(id: @affiliate.id, q: { commission_id_eq: commission.id }), class: 'with-tip btn-sm btn-primary', icon: 'stats' %>
+          <% if !commission.paid? && commission.can_marked_paid? %>
+            <%= button_link_to "", pay_admin_affiliate_commission_path(@affiliate, commission), class: 'with-tip btn-sm btn-success', icon: 'ok', method: :patch %>
+          <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @commissions %>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Commission)) %>
+  </div>
+<% end %>

@@ -25,6 +25,10 @@ describe Spree::User, type: :model do
     end
   end
 
+  describe 'associations' do
+    it { is_expected.to have_many(:transactions).class_name('CommissionTransaction').dependent(:restrict_with_error) }
+  end
+
   context "referred user" do
     it "has a referred user" do
       expect(@referred.referred_by).to eq(@user)
