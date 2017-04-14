@@ -60,3 +60,26 @@ Deface::Override.new(
 </div>
 CODE
 end
+
+Deface::Override.new(
+  virtual_path: "spree/admin/users/_form",
+  name: "referral_settings",
+  insert_after: "[data-hook='admin_user_form_password_fields']"
+) do
+<<-CODE.chomp
+  <div data-hook="admin_user_form_referral_amount_field" class="col-md-6">
+    <%= f.field_container :referral_credits, class: ['form-group'] do %>
+      <%= f.label :referral_credits, Spree.t(:credits_to_be_awarded, scope: "user.referral_setting") %>
+      <%= f.text_field :referral_credits, class: 'form-control' %>
+      <%= f.error_message_on :referral_credits %>
+    <% end %>
+
+    <%= f.field_container :referrer_benefit_enabled, class: ['checkbox'] do %>
+      <%= f.label :referrer_benefit_enabled do %>
+        <%= f.check_box :referrer_benefit_enabled %>
+         <%= Spree.t(:referral_credit_status, scope: "user.referral_setting") %>
+      <% end %>
+    <% end %>
+  </div>
+CODE
+end

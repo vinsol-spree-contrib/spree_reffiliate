@@ -19,6 +19,18 @@ en:
     referral_code_applied: Please proceed with signup to avail referral discount.
     affiliate_code_applied: Please proceed with signup to avail affiliate discount.
     affiliate: Affiliate
+    referral:
+      name: Referrals
+      details: View details
+    referral_settings:
+      name: Referral Settings
+      update:
+        successful: Referral settings successfully updated.
+        unsuccessful: Failed to update. Cashback can not be a negative amount.
+      credits_to_be_awarded: Store Credits to be awarded
+      referral_credit_status: Give referral benefits.
+    referral_mail:
+      subject: Store credits awarded for successful referral.
     commission:
       mark_paid_successfully: Commission has been paid successfully
       mark_paid_failure: Commission cannot be marked paid
@@ -40,3 +52,11 @@ en:
     affiliate_confirmation:
       editing_affiliate: EDITING AFFILIATE
       not_found: Affiliate Not Found
+    view_details: View Details
+    referred_user_details: Reffered User Details
+    zero_reffered_count: No user has been referred by you.
+    user:
+      referral_setting:
+        credits_to_be_awarded: Store Credits for referral
+        referral_credit_status: Referral benefit enabled
+
