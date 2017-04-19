@@ -2,10 +2,12 @@ require 'spec_helper'
 
 describe Spree::User, type: :model do
   before(:each) do
-    @user = FactoryGirl.create(:user, email: FFaker::Internet.email)
-    @referred = FactoryGirl.create(:user, email:  FFaker::Internet.email, referral_code: @user.referral.code)
+    @user = FactoryGirl.create(:user, email: FFaker::Internet.email, referral_credits: 50, referrer_benefit_enabled: true)
+    @referred = FactoryGirl.create(:user, email:  FFaker::Internet.email, referral_code: @user.referral.code, referral_credits: 50, referrer_benefit_enabled: true)
     @affiliate = Spree::Affiliate.create(name: FFaker::Name.name, path: FFaker::Name.name)
     @affiliated = FactoryGirl.create(:user, email:  FFaker::Internet.email, affiliate_code: @affiliate.path)
+    Spree::Config[:referrer_benefit_enabled] = true
+    Spree::StoreCredit::REFERRAL_STORE_CREDIT_CATEGORY = 'Referal Category'
   end
   context "referral user" do
     it "has a referral record" do

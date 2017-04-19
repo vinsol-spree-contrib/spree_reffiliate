@@ -12,6 +12,7 @@
 <div>
   <dt>Referred Users</dt>
   <dd><%= @user.referred_count%></dd>
+  <dd><%= link_to Spree.t(:details, scope: :referral), account_referral_details_path %>
 </div>
 <br>
 <% if @user.associated_partner.present? %>

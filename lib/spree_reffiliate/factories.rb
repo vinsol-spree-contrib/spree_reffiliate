@@ -12,6 +12,7 @@ FactoryGirl.define do
   end
 
   factory :referral, class: Spree::Referral
+  factory :referred_record, class: Spree::ReferredRecord
   factory :referred_promotion_rule, class: Spree::Promotion::Rules::ReferredPromotionRule
   factory :affiliated_promotion_rule, class: Spree::Promotion::Rules::AffiliatedPromotionRule
 

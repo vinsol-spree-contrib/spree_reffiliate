@@ -6,6 +6,9 @@ describe Spree::UsersController, type: :controller do
   let(:user) { create(:user, email: email) }
   let(:role) { create(:role) }
   let(:affiliate) { double(Spree::Affiliate) }
+  let!(:referrable_user) { FactoryGirl.create(:user, email: FFaker::Internet.email, referral_credits: 50, referrer_benefit_enabled: true) }
+  let!(:referral) { FactoryGirl.create(:referral, user_id: user.id, code: FFaker::Name.name) }
+  let!(:referred_record) { FactoryGirl.create(:referred_record, user_id: user.id, referral_id: referrable_user.id) }
 
   before do
     allow(controller).to receive(:spree_current_user) { user }
@@ -41,4 +44,12 @@ describe Spree::UsersController, type: :controller do
     end
   end
 
+  describe '#referral_details' do
+    before { allow(controller).to receive(:spree_current_user) { referrable_user } }
+
+    it 'lists all referrals of current user' do
+      spree_get :referral_details
+      expect(assigns(:referred_records).first).to eq(referred_record)
+    end
+  end
 end
