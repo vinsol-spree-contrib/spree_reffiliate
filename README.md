@@ -10,17 +10,9 @@ Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate fea
 
 ### Referrals
 + Each user will have a unique link associated to his account which he can use to refer other users.
-![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png)
 + User can signup as a referred user
 + Referred user can have promotions
-+ Admin is able to see referred users and orders from user
-+ Referrer gets store credit for successful referrals. A referral will be considered successful if referred user successfully signs up.
-+ Admin can configure referral settings. There are two settings for giving referral benefits to referrer. One is the global setting found under configuration tab and other is user specific setting.
-+ Global Settings : There are two global settings under Configuration->Referrals tabs with regard to referral. One is the store credit amount that would be credited to referer's account on each successful referral. Other is a checkbox to enable and disable the referral benefit to a referrer. By default store credit amount is set to 0 and referral benefit is disabled.
-+ User Specific Settings : Admin can override the referral settings for a particular user in user's general settings, where he may disable/enable the referral benefits and change the store credit amount. Default value for store credit is nil and referral benefit is enabled.
-+ Referrer will receive store credit when referral is enabled at both global and user level. Store credit amount in user setting will have precedence over the global setting. In case the value is nil in user setting then global setting would apply for store credit amount.
-+ Each user can see their referrals under My Account section. To see the details of referrals user can click on view more where all referred users will be listed with store credit amount and date of sign up by referred user.
-+ Admin can see store credits for a particular user under user's store credit section. The store credits received for referral will be listed under Referral Credit category.
++ Referrer can have store credits.
 
 ### Affiliates
 + Admin is able to create an affiliate with a custom path.
@@ -126,6 +118,28 @@ Admin can manage commission for an affiliate by default.
 + Moreover, he can check the transactions from account details page.
 ![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/my-account-transactions-crop.png)
 
+#### Referrals
+
+### Referrals
++ Each user will have a unique link associated to his account which he can use to refer other users.
+![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/user_myaccount.png)
++ User can signup as a referred user
++ Referred user can have promotions
++ Admin is able to see referred users and orders from user
++ Referrer gets store credit for successful referrals. A referral will be considered successful if referred user successfully signs up.
++ Admin can configure referral settings. There are two settings for giving referral benefits to referrer. One is the global setting found under configuration tab and other is user specific setting.
+![Global Referral Setting](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/configuration_referrals_tab.png)
++ Global Settings : There are two global settings under Configuration->Referrals tabs with regard to referral. One is the store credit amount that would be credited to referer's account on each successful referral. Other is a checkbox to enable and disable the referral benefit to a referrer. By default store credit amount is set to 0 and referral benefit is disabled.
+![Referral Settings Edit](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/referral_settings_edit_page.png)
++ User Specific Settings : Admin can override the referral settings for a particular user in user's general settings, where he may disable/enable the referral benefits and change the store credit amount. Default value for store credit is nil and referral benefit is enabled.
+![User Specific Settings](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/user_referral_settings.png)
++ Referrer will receive store credit when referral is enabled at both global and user level. Store credit amount in user setting will have precedence over the global setting. In case the value is nil in user setting then global setting would apply for store credit amount.
++Referrer will receive mail on store credit transfer to his account
+![Store Credit Mail](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/mail_to%20referrer.png)
++ Each user can see their referrals under My Account section. To see the details of referrals user can click on view more where all referred users will be listed with store credit amount and date of sign up by referred user.
+![User Referral Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/myaccount_referral_details.png)
++ Admin can see store credits for a particular user under user's store credit section. The store credits received for referral will be listed under Referral Credit category.
+![User Store Credits](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/admin_users_store_credits_list.png)
 
 ## Testing
 
