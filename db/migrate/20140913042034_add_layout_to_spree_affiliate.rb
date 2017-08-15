@@ -1,4 +1,4 @@
-class AddLayoutToSpreeAffiliate < ActiveRecord::Migration
+class AddLayoutToSpreeAffiliate < SpreeExtension::Migration[4.2]
   def change
     add_column :spree_affiliates, :layout, :string
   end

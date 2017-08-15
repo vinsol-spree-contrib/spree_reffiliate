@@ -12,3 +12,5 @@ nbproject
 pkg
 *.swp
 spec/dummy
+.ruby-gemset
+gemfiles/*.gemfile.lock

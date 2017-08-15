@@ -13,14 +13,18 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/vinsol-spree-contrib/spree_reffiliate'
   s.license     = 'New-BSD'
 
-  s.required_ruby_version = '>= 2.2.0'
+  s.required_ruby_version = '>= 2.2.2'
 
   s.files        = `git ls-files`.split($/)
   s.test_files   = s.files.grep(%r{^spec/})
   s.require_path = 'lib'
 
-  s.add_dependency 'spree_core', '~> 3.2.0.alpha'
+  spree_version = '>= 3.1.0', '< 4.0'
 
+  s.add_dependency 'spree_core', spree_version
+  s.add_dependency 'spree_extension', '~> 0.0.5'
+
+  s.add_development_dependency 'appraisal'
   s.add_development_dependency 'capybara', '~> 2.5'
   s.add_development_dependency 'coffee-rails'
   s.add_development_dependency 'database_cleaner', '~> 1.3'
@@ -32,4 +36,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'sqlite3', '~> 1.3.10'
   s.add_development_dependency 'mysql2'
   s.add_development_dependency 'pg'
+  s.add_development_dependency 'spree_backend',  spree_version
+  s.add_development_dependency 'spree_frontend',  spree_version
 end
