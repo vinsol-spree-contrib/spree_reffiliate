@@ -1,0 +1,16 @@
+Welcome <%= @affiliate.email %>!
+<br><br><br>
+
+Your request to be an Affiliate has been acknowledged.
+
+<% if @affiliate.active? %>
+  Please Log into your account.
+<% else %>
+  You can confirm your account email through the url below:
+  <%= link_to 'link', new_affiliate_confirmation_url(activation_token: @affiliate.activation_token), class: 'btn btn-success'  %>
+  <br>
+  Incase url does not open, you can use:
+  <p style="white-space: nowrap;">
+    <%= new_affiliate_confirmation_url(activation_token: @affiliate.activation_token) %>
+  </p>
+<% end %>

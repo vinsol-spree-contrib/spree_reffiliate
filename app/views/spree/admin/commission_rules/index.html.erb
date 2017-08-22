@@ -1,0 +1,39 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_commission_rules) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <span id="new_affiliate_section">
+    <%= button_link_to Spree.t(:new_commission_rule), new_admin_commission_rule_url, icon: 'add', class: "btn-success", id: 'admin_new_commission_rule_link' %>
+  </span>
+<% end %>
+<% if @commission_rules.any? %>
+  <table class="table" id="listing_affiliates" data-hook>
+    <thead>
+      <tr data-hook="admin_affiliates_index_headers">
+        <th><%= Spree.t(:name) %></th>
+        <th><%= Spree.t(:description) %></th>
+        <th><%= Spree.t(:fixed_commission) %></th>
+        <th data-hook="admin_affiliates_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @commission_rules.each do |commission_rule|%>
+        <tr id="<%= spree_dom_id commission_rule %>" data-hook="admin_commission_rules_index_rows" class="<%= cycle('odd', 'even')%>">
+          <td class='commission_rule_name'><%=link_to commission_rule.name, edit_admin_commission_rule_url(commission_rule) %></td>
+          <td class='commission_rule_path align-center'><%= commission_rule.description %></td>
+          <td class='commission_rule_count align-center'><%= commission_rule.fixed_commission? %></td>
+          <td data-hook="admin_commission_rules_index_row_actions" class="actions">
+            <%= link_to_edit commission_rule, no_text: true %>
+            <%= link_to_delete commission_rule, no_text: true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::CommissionRule)) %>,
+    <%= link_to(Spree.t(:add_one), spree.new_admin_affiliate_path) if can? :create, Spree::CommissionRule %>!
+  </div>
+<% end %>

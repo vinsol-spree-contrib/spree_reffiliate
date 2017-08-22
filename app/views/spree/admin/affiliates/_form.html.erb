@@ -9,6 +9,14 @@
         <% end %>
       </div>
 
+      <div data-hook="affiliate_email">
+        <%= f.field_container :email, class: ['form-group'] do %>
+          <%= f.label :email, Spree.t(:email) %>
+          <%= f.text_field :email, class: 'form-control' %>
+          <%= f.error_message_on :email %>
+        <% end %>
+      </div>
+
       <div data-hook="affiliate_partial">
         <%= f.field_container :partial, class: ['form-group'] do %>
           <%= f.label :partial, Spree.t(:partial) + " (leave blank if no partial) " %>
@@ -33,26 +41,48 @@
             <br/>
             <%= f.text_field :layout, value: @affiliate.layout.nil? ? @layout_options.first : @affiliate.layout, class: 'form-control' %>
           </p>
-          <script>
-            var fake_layout = $("#fake_layout"),
-                affiliate_layout = $("#affiliate_layout");
-            fake_layout.on("change", function(){
-              affiliate_layout.hide();
-              if ($(this).val() != '') {
-                affiliate_layout.val($(this).val());
-              } else {
-                affiliate_layout.val('layouts/application').show().focus();
-              }
-            });
-            if (!fake_layout.hasClass('other')) {
-              affiliate_layout.hide();
-            } else {
-              fake_layout.val('');
-            }
-          </script>
           <%= f.error_message_on :layout %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <fieldset data-hook="admin_affiliate_edit_general_settings" class="alpha twelve columns">
+    <legend><%= Spree.t(:commission_info) %></legend>
+      <%= f.fields_for :affiliate_commission_rules  do |aff_comm_rule| %>
+        <% rule = aff_comm_rule.object.commission_rule %>
+        <div class="col-md-6">
+          <div data-hook="affiliate_commission">
+            <%= aff_comm_rule.label :rate, "#{ rule.name } (#{rule.fixed_commission? ? 'fixed commission' : '% commission'})" %>
+            <%= aff_comm_rule.text_field :rate, class: 'form-control' %>
+            <%= aff_comm_rule.hidden_field :commission_rule_id %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= aff_comm_rule.label :active, :active %>
+          <%= aff_comm_rule.check_box :active, class: 'form-control' %>
+        </div>
+      <% end %>
+    </fieldset>
+  </div>
+</div>
+<script>
+  var fake_layout = $("#fake_layout"),
+      affiliate_layout = $("#affiliate_layout");
+  fake_layout.on("change", function(){
+    affiliate_layout.hide();
+    if ($(this).val() != '') {
+      affiliate_layout.val($(this).val());
+    } else {
+      affiliate_layout.val('layouts/application').show().focus();
+    }
+  });
+  if (!fake_layout.hasClass('other')) {
+    affiliate_layout.hide();
+  } else {
+    fake_layout.val('');
+  }
+</script>

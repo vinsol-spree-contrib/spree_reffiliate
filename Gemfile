@@ -6,7 +6,7 @@ gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: 'master'
 
 group :test do
   gem 'rails-controller-testing'
-  gem "codeclimate-test-reporter", require: nil
+  gem 'codeclimate-test-reporter', require: nil
 end
 
 gemspec
