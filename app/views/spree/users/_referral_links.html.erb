@@ -1,3 +1,4 @@
+<br>
 <dt>Referral URL</dt>
 <dd class='col-md-6 row'>
   <div class="input-group">
@@ -7,14 +8,15 @@
     </span>
   </div>
 </dd>
-<br>
-<br>
+<br><br><br>
+
 <div>
   <dt>Referred Users</dt>
   <dd><%= @user.referred_count%></dd>
   <dd><%= link_to Spree.t(:details, scope: :referral), account_referral_details_path %>
 </div>
-<br>
+<br><br>
+
 <% if @user.associated_partner.present? %>
   <dt>Affilate URL</dt>
   <dd class='col-md-6 row'>
@@ -25,9 +27,7 @@
       </span>
     </div>
   </dd>
-  <br>
-  <br>
-  <br>
+  <br><br><br>
   <div>
     <dt>Transactions Count</dt>
     <dd><%= @user.associated_partner.transactions.count %></dd>

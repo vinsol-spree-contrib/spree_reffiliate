@@ -18,16 +18,17 @@ module Spree
 
       protected
 
-        def affiliate_partial_exists? partial
-          return false if partial.blank?
-          Affiliate.lookup_for_partial lookup_context, partial
-        end
+      def affiliate_partial_exists? partial
+        return false if partial.blank?
+        Affiliate.lookup_for_partial lookup_context, partial
+      end
 
-        def layout_options
-          @layout_options = Spree::Affiliate.layout_options
-        end
+      def layout_options
+        @layout_options = Spree::Affiliate.layout_options
+      end
 
       private
+
       def build_or_load_affiliate_commission_rule
         Spree::CommissionRule.all.map { |comm_rule| @affiliate.affiliate_commission_rules.find_or_initialize_by(commission_rule_id: comm_rule.id) }
       end

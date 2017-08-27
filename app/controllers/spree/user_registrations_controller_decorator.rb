@@ -1,5 +1,5 @@
 Spree::UserRegistrationsController.class_eval do
-  before_filter :check_referral_and_affiliate, only: :create
+  before_action :check_referral_and_affiliate, only: :create
   after_action :reset_affiliate_session, only: :create
 
   def check_referral_and_affiliate
