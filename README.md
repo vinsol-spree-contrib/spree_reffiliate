@@ -9,15 +9,21 @@ Spree Reffiliate
 Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate features to your Spree Store. Users are going to be able to share a unique hyperlink with their friends to gain benefits and you'll be able to create affiliate campaigns through the Spree Administrator and configure it to your needs.
 
 ### Referrals
-+ User can share a unique URL
++ Each user will have a unique link associated to his account which he can use to refer other users.
 + User can signup as a referred user
 + Referred user can have promotions
-+ Admin is able to see referred users and orders from user
++ Referrer can have store credits.
 
 ### Affiliates
-+ Admin is able to create an affiliate with a custom path
++ Admin is able to create an affiliate with a custom path.
++ Affiliate will get a welcome mail, which will have activation link if affliate has not been present as a user in system.
 + Customize the affiliate view with a partial
-+ Users are going to be able to signup as an affiliated user
++ Affiliate can get commission in two ways:
+  (i) Order placement
+  (ii) User Registration
++ These commission amount can be defined from `affiliate_commission_rules` on affiliate new/edit page.
++ After successful user-creation/order-placement, a transaction will be created which will have the amount and commissionable(user/order).
++ Affilate can view it in account panel.
 + Affiliated user can have individual promotions
 + Admin is able to see affiliated users and orders from affiliate
 
@@ -37,6 +43,8 @@ Bundle your dependencies and run the installation generator:
 bundle
 bundle exec rails g spree_reffiliate:install
 ```
+Seed the Commission Rules from `seed.rb`
+
 
 ### Existing Users
 If you already have users within your database, you'll need to run the following command to generate the referral registry for your users:
@@ -58,6 +66,7 @@ Once installed, you'll be able to access the following methods.
 + affiliate? => boolean
 + affiliate => affiliate record
 + referral => referral record
++ associated_partner => user corrosponding to affiliate.
 
 #### Spree::Referral
 + code => referral code
@@ -66,33 +75,75 @@ Once installed, you'll be able to access the following methods.
 + referred_count => user count
 + referral_activated_users => users with completed orders
 
-#### Spree::Affiliates
+#### Spree::Affiliate
 + referred_users => array of users
 + referred_orders => array of orders
 + referred_count => user count
 
-### Spree Admin
+## Affiliates
 
-#### Users
-![User Listing](https://cloud.githubusercontent.com/assets/1270156/4210981/11cd353a-387f-11e4-826d-07b272bb249a.png)
++ Affiliate listing can be found in affiliates subtab.
+![Affiliate Registration](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affliates-listing.png)
 
-#### Affiliates
-![Referral Listing](https://cloud.githubusercontent.com/assets/1270156/4210982/11e9966c-387f-11e4-9a27-fca70c7a706d.png)
++ Admin can create a new affiliate.
+![Affiliate Registration](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-registration-new.png)
 
-#### Promotion Rules
++ Affiliate will be send a email which will have an activation link.
+![Affiliate Confirmation](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-confirmation-crop.png)
 
-**Important**: in both referrals and affiliates, do **not** fill in the promotion code for the promotion itself to be applied automatically to the user's order. If you add a promotion code, the user will need to apply the for promotion manually.
+![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png)
 
-##### For referrals
+## Commissions
 
-![Referral Rules](https://cloud.githubusercontent.com/assets/1270156/4244240/ec3dac8c-3a1d-11e4-8c6d-42c9f9b31e5f.png)
++ Admin can manage commission for an affiliate by default.
+![Commission Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/commission-listing-crop.png)
 
-##### For affiliates
++ Admin can pay commission, once the commission cycle completes. The commission tab will have pay button which will mark respective commission as completes. This action, as a result, also locks corrosponding transactions.
+![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-pay-commission.png)
 
-![Affiliate Rules](https://cloud.githubusercontent.com/assets/1270156/4244241/ec3e156e-3a1d-11e4-972a-5d61ebf0f053.png)
++ Commission search has advanced search filters.
+![Commission Search](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/admin-commission-search.png)
 
-### User account
-![User account](https://cloud.githubusercontent.com/assets/1270156/4210983/11e9b9a8-387f-11e4-8733-182bdebc449c.png)
+## Transactions
+
++ Admin can list the transactions of affiliates.
+![Transactions Listing](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/transactions-listing-crop.png)
+
+## User account
+
++ User can see its affiliate link from my account.
+![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/affiliate-account-details.png)
+
++ Moreover, the user can check the transactions from account details page.
+![User account](https://s3.amazonaws.com/gems-and-extensions-screenshots/refillate_images/my-account-transactions-crop.png)
+
+## Referrals
+
++ Each user will have a unique link associated to his account which he can use to refer other users.
+![Affiliate Account Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/user_myaccount.png)
+
++ User can signup as a referred user
++ Referred user can have promotions
++ Admin is able to see referred users and orders from user
++ Referrer gets store credit for successful referrals. A referral will be considered successful if referred user successfully signs up.
++ Admin can configure referral settings. There are two settings for giving referral benefits to referrer. One is the global setting found under configuration tab and other is user specific setting.
+![Global Referral Setting](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/configuration_referrals_tab.png)
+
++ Global Settings : There are two global settings under Configuration->Referrals tabs with regard to referral. One is the store credit amount that would be credited to referer's account on each successful referral. Other is a checkbox to enable and disable the referral benefit to a referrer. By default store credit amount is set to 0 and referral benefit is disabled.
+![Referral Settings Edit](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/referral_settings_edit_page.png)
+
++ User Specific Settings : Admin can override the referral settings for a particular user in user's general settings, where he may disable/enable the referral benefits and change the store credit amount. Default value for store credit is nil and referral benefit is enabled.
+![User Specific Settings](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/user_referral_settings.png)
+
++ Referrer will receive store credit when referral is enabled at both global and user level. Store credit amount in user setting will have precedence over the global setting. In case the value is nil in user setting then global setting would apply for store credit amount.
++Referrer will receive mail on store credit transfer to his account
+![Store Credit Mail](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/mail_to%20referrer.png)
+
++ Each user can see their referrals under My Account section. To see the details of referrals user can click on view more where all referred users will be listed with store credit amount and date of sign up by referred user.
+![User Referral Details](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/myaccount_referral_details.png)
+
++ Admin can see store credits for a particular user under user's store credit section. The store credits received for referral will be listed under Referral Credit category.
+![User Store Credits](https://s3.amazonaws.com/gems-and-extensions-screenshots/reffiliate_referral_images/admin_users_store_credits_list.png)
 
 ## Testing
 

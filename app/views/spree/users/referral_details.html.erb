@@ -1,0 +1,28 @@
+<h3><%= Spree.t(:referred_users) %></h3>
+
+<% if @referred_records.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th><%= Spree.t(:referred_user) %></th>
+        <th><%= Spree.t(:credits_received) %></th>
+        <th><%= Spree.t(:date) %></th>
+        <th data-hook="referred_users_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @referred_records.each do |referred_record| %>
+        <tr id="<%= spree_dom_id referred_record %>">
+          <td><%= referred_record.user.email %></td>
+          <td><%= referred_record.store_credit ? referred_record.store_credit.amount : '0'  %></td>
+          <td><%= referred_record.created_at.strftime("%m-%d-%y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:zero_reffered_count) %>
+  </div>
+<% end %>
+<%= paginate @referred_records %>

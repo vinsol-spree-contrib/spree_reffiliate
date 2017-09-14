@@ -1,0 +1,32 @@
+<% if @user && @user.associated_partner.present? %>
+  <h3><%= Spree.t(:my_transaction) %></h3>
+  <% commission_transactions  = @user.associated_partner.transactions %>
+  <% if commission_transactions.any? %>
+    <table class="table" id="listing_affiliates" data-hook>
+      <thead>
+        <tr data-hook="admin_affiliates_index_headers">
+          <th><%= Spree.t(:reference) %></th>
+          <th><%= Spree.t(:type) %></th>
+          <th><%= Spree.t(:date) %></th>
+          <th><%= Spree.t(:amount) %></th>
+          <th><%= Spree.t(:locked) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% commission_transactions.each do |transaction|%>
+          <tr id="<%= spree_dom_id transaction %>" data-hook="admin_transactions_index_rows" class="<%= cycle('odd', 'even')%>">
+            <% if transaction.commissionable_type.eql? 'Spree::User' %>
+              <td class='transaction_name'><%= transaction.commissionable.email %></td>
+            <% elsif transaction.commissionable_type.eql? 'Spree::Order' %>
+              <td class='transaction_name'><%= transaction.commissionable.number %></td>
+            <% end %>
+            <td class='transaction_name'><%= transaction.commissionable_type %></td>
+            <td class='align-center'><%= pretty_time(transaction.created_at) %></td>
+            <td class='align-center'><%= transaction.display_total %></td>
+            <td class='align-center'> <%= transaction.locked? %> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+<% end %>
