@@ -12,6 +12,8 @@ require 'spree/testing_support/authorization_helpers'
 require 'spree/testing_support/capybara_ext'
 require 'spree/testing_support/controller_requests'
 require 'spree/testing_support/factories'
+require 'shoulda/matchers'
+require 'shoulda-callback-matchers'
 require 'spree/testing_support/url_helpers'
 require 'spree_reffiliate/factories'
 
@@ -31,4 +33,17 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = "random"
+
+  config.before(:all) do
+    Spree::CommissionRule.find_or_create_by(name: Spree::CommissionRule::USER_REGISTRATION, fixed_commission: true)
+    Spree::CommissionRule.find_or_create_by(name: Spree::CommissionRule::ORDER_PLACEMENT, fixed_commission: false)
+  end
+end
+
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

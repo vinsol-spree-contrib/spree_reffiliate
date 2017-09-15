@@ -38,4 +38,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'pg'
   s.add_development_dependency 'spree_backend',  spree_version
   s.add_development_dependency 'spree_frontend',  spree_version
+  s.add_development_dependency 'shoulda-matchers'
+  s.add_development_dependency 'shoulda-callback-matchers'
 end

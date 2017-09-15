@@ -1,0 +1,64 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_commission_transactions) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= link_to_with_icon 'arrow-left', Spree.t(:back_to_affiliates_list), admin_affiliates_path, class: 'btn btn-default' %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_transactions_search">
+    <%= search_form_for @search, url: transactions_admin_affiliate_path(@affiliate) do |f| %>
+      <%- locals = { f: f } %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :amount_eq, Spree.t(:amount) %>
+            <%= f.text_field :amount_eq, size: 15, class: "form-control js-quick-search-target" %>
+          </div>
+        </div>
+      </div>
+      <div data-hook="admin_products_index_search_buttons" class="form-actions">
+        <%= button Spree.t(:search), 'search' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+<% if @commission_transactions.any? %>
+  <table class="table" id="listing_affiliates" data-hook>
+    <thead>
+      <tr data-hook="admin_affiliates_index_headers">
+        <th><%= Spree.t(:reference) %></th>
+        <th><%= Spree.t(:type) %></th>
+        <th>
+          <%= sort_link @search, :created_at, Spree.t(:date), { default_order: "desc" }, {title: 'admin_transaction_listing_created_at'} %>
+        </th>
+        <th><%= sort_link @search, :amount, Spree.t(:amount), { default_order: "desc" }, {title: 'admin_products_listing_amount'} %></th>
+        <th><%= Spree.t(:locked) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @commission_transactions.each do |transaction|%>
+        <tr id="<%= spree_dom_id transaction %>" data-hook="admin_transactions_index_rows" class="<%= cycle('odd', 'even')%>">
+          <% if transaction.commissionable_type.eql? 'Spree::User' %>
+            <td class='transaction_name'><%=link_to transaction.commissionable.email, '' %></td>
+          <% elsif transaction.commissionable_type.eql? 'Spree::Order' %>
+            <td class='transaction_name'><%=link_to transaction.commissionable.number, '' %></td>
+          <% end %>
+          <td class='transaction_name'><%= transaction.commissionable_type %></td>
+          <td class='align-center'><%= pretty_time(transaction.created_at) %></td>
+          <td class='align-center'><%= transaction.display_total %></td>
+          <td class='align-center'> <%= transaction.locked? %> </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= paginate @commission_transactions %>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::CommissionTransaction)) %>
+  </div>
+<% end %>
