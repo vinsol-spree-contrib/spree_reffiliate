@@ -71,7 +71,7 @@ module Spree
       end
 
       def send_activation_instruction
-        Spree::AffiliateMailer.activation_instruction(email).deliver_now
+        Spree::AffiliateMailer.activation_instruction(email).deliver_later
       end
 
       def invalid_rule(attributes)
