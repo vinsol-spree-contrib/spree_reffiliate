@@ -1,4 +1,4 @@
-class CreateSpreePromotionRulesAffiliates < ActiveRecord::Migration
+class CreateSpreePromotionRulesAffiliates < ActiveRecord::Migration[4.2]
   def change
     create_table :spree_affiliates_promotion_rules do |t|
       t.integer :affiliate_id
