@@ -23,7 +23,7 @@
         <tr id="<%= spree_dom_id affiliate %>" data-hook="admin_affiliates_index_rows" class="<%= cycle('odd', 'even')%>">
           <td class='affiliate_name'><%=link_to affiliate.name, edit_admin_affiliate_url(affiliate) %></td>
           <td class='affiliate_path align-center'><%= affiliate_url(affiliate.path) %></td>
-          <td class='affiliate_count align-center'><%= affiliate.referred_count %></td>
+          <td class='affiliate_count align-center'><%= affiliate.transactions.count %></td>
           <% if affiliate.partial.blank? || !affiliate_partial_exists?(affiliate.partial) %>
             <td class='affiliate_status align-center' style="color: red">Not found</td>
           <% elsif affiliate_partial_exists?(affiliate.partial) %>
