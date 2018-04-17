@@ -11,6 +11,6 @@ Spree::StoreCredit.class_eval do
     end
 
     def send_credit_reward_information
-      Spree::ReferralMailer.credits_awarded(user, amount).deliver_now
+      Spree::ReferralMailer.credits_awarded(user, amount.to_f).deliver_later
     end
 end
