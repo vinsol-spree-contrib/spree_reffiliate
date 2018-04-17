@@ -1,4 +1,4 @@
-class AddAffiliateToSpreeOrders < ActiveRecord::Migration
+class AddAffiliateToSpreeOrders < ActiveRecord::Migration[4.2]
   def change
     add_column :spree_orders, :affiliate_id ,:integer
 

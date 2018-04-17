@@ -1,4 +1,4 @@
-class AddUserToSpreeAffiliate < ActiveRecord::Migration
+class AddUserToSpreeAffiliate < ActiveRecord::Migration[4.2]
   def change
     add_column :spree_affiliates, :email, :string
     add_column :spree_affiliates, :active, :boolean, default: false

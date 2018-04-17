@@ -1,4 +1,4 @@
-class CreateSpreeCommissionTransactions < ActiveRecord::Migration
+class CreateSpreeCommissionTransactions < ActiveRecord::Migration[4.2]
   def change
     create_table :spree_commission_transactions do |t|
       t.references :affiliate, index: true

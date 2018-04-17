@@ -16,7 +16,6 @@ Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate fea
 
 ### Affiliates
 + Admin is able to create an affiliate with a custom path.
-+ Affiliate will get a welcome mail, which will have activation link if affliate has not been present as a user in system.
 + Customize the affiliate view with a partial
 + Affiliate can get commission in two ways:
   (i) Order placement

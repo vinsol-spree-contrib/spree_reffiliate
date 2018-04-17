@@ -43,9 +43,9 @@
       <% @commission_transactions.each do |transaction|%>
         <tr id="<%= spree_dom_id transaction %>" data-hook="admin_transactions_index_rows" class="<%= cycle('odd', 'even')%>">
           <% if transaction.commissionable_type.eql? 'Spree::User' %>
-            <td class='transaction_name'><%=link_to transaction.commissionable.email, '' %></td>
+            <td class='transaction_name'><%=link_to transaction.commissionable.email, admin_user_path(Spree::User.find_by(email: transaction.commissionable.email).try(:id)) %></td>
           <% elsif transaction.commissionable_type.eql? 'Spree::Order' %>
-            <td class='transaction_name'><%=link_to transaction.commissionable.number, '' %></td>
+            <td class='transaction_name'><%=link_to transaction.commissionable.number, edit_admin_order_path(Spree::Order.find_by(number: transaction.commissionable.number).try(:number)) %></td>
           <% end %>
           <td class='transaction_name'><%= transaction.commissionable_type %></td>
           <td class='align-center'><%= pretty_time(transaction.created_at) %></td>
