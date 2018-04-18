@@ -8,6 +8,12 @@ Spree Reffiliate
 
 Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate features to your Spree Store. Users are going to be able to share a unique hyperlink with their friends to gain benefits and you'll be able to create affiliate campaigns through the Spree Administrator and configure it to your needs.
 
+Demo
+-----------------------------------
+Try Spree Reffiliate for Spree 3-1 with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-reffiliate-3-1)
+
 ### Referrals
 + Each user will have a unique link associated to his account which he can use to refer other users.
 + User can signup as a referred user
