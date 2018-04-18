@@ -14,6 +14,10 @@ Try Spree Reffiliate for Spree 3-4 with direct deployment on Heroku:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-refilliate)
 
+Try Spree Reffiliate for Spree 3-1 with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-reffiliate-3-1)
+
 ### Referrals
 + Each user will have a unique link associated to his account which he can use to refer other users.
 + User can signup as a referred user
