@@ -10,6 +10,10 @@ Spree Reffiliate is a [Spree] Extension that adds the referral and affiliate fea
 
 Demo
 -----------------------------------
+Try Spree Reffiliate for Spree Master with direct deployment on Heroku:
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-reffiliate-master)
+
 Try Spree Reffiliate for Spree 3-4 with direct deployment on Heroku:
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-refilliate)
