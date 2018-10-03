@@ -167,6 +167,13 @@ bundle
 bundle exec rake
 ```
 
+## See It In Action
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=CSis4gcj8Xg
+" target="_blank"><img src="http://img.youtube.com/vi/CSis4gcj8Xg/0.jpg" 
+alt="Youtube Video Tutorial" /></a>
+
+
 ## Credits
 
 Copyright (c) 2014 Alejandro AR, released under the New BSD License
